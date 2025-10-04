@@ -6,6 +6,7 @@ import { PLANET_DATA, QUIZ_QUESTIONS } from './constants';
 import GlobeView from "./components/GlobeView";
 import Cupola from './components/Cupola';
 import { SwitchCupola } from './components/SwitchCupola';
+import Asteroid from './components/Asteroid';
 
 const HEADER_H = 64;
 const FOOTER_H = 56
@@ -22,6 +23,9 @@ const App: FC = () => {
         </div>
         <Cupola hidden={hiddenCupola} />
         <SwitchCupola hidden={hiddenCupola} onClick={() => setHiddenCupola(!hiddenCupola)} />
+          {Array.from({ length: 10 }).map((_, i) => (
+                    <Asteroid key={i} size={[30, 100]} speed={0.4 + Math.random() * 0.3} zIndex={2} />
+                  ))}
       </main>
       <div style={{ height: FOOTER_H }}>
         <Footer />
