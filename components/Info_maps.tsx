@@ -107,5 +107,16 @@ export const PLANET_POINTS: PointInfo[] = [
   ],
   source: "NASA – NBL (Neutral Buoyancy Laboratory)",
   sourceUrl: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory/?utm_source=chatgpt.com",
+},
+{
+  name: "La bomba de Hiroshima",
+  lat: 34.3853,
+  lng: 132.4553,
+  title: "La bomba de Hiroshima",
+  sectionTitle: "¿Por qué la bomba de Hiroshima explotó en el aire y no al impactar con el suelo?",
+  bullets: [
+        "Porque estaba diseñada para detonar aproximadamente a 600 metros sobre la ciudad para maximizar el daño por onda expansiva y calor, afectando más edificios y personas que si hubiera explotado en el suelo. Muchos piensan que “cayó y explotó en el suelo”, pero la estrategia de altura fue clave para su devastación.",
+
+  ],
 }
 ];
