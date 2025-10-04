@@ -33,19 +33,34 @@ export const Astronaut = () => {
   return (
     <>
       {/* Botón en header */}
-      <div className="absolute right-16 top-[27px] pointer-events-auto">
-        <button
-          type="button"
-          onClick={() => setIsOpen(true)}
-          className="focus:outline-none"
-        >
-          <img
-            src="/images/boton.png"
-            alt="Open astronaut modal"
-            className="h-[80px] w-auto transform rotate-12 hover:rotate-0 hover:scale-105 transition-transform duration-300 ease-in-out"
-          />
-        </button>
-      </div>
+     <div className="absolute right-16 top-[27px] pointer-events-auto">
+		{/* Define la animación aquí mismo */}
+		<style>
+			{`
+			@keyframes floaty {
+				0%   { transform: translateY(0); }
+				50%  { transform: translateY(-8px); }
+				100% { transform: translateY(0); }
+			}
+			.floaty {
+				animation: floaty 3s ease-in-out infinite;
+				display: inline-block; /* para que la animación afecte al elemento */
+			}
+			`}
+		</style>
+
+		<button
+			type="button"
+			onClick={() => setIsOpen(true)}
+			className="focus:outline-none floaty"
+		>
+			<img
+			src="/images/boton.png"
+			alt="Open astronaut modal"
+			className="h-[80px] w-auto transform rotate-12 hover:rotate-0 hover:scale-105 transition-transform duration-300 ease-in-out"
+			/>
+		</button>
+		</div>
 
       {/* Modal */}
       {isOpen && (
