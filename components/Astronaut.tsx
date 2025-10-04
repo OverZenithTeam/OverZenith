@@ -21,8 +21,8 @@ export const Astronaut = () => {
       Colombia: "/images/colombia.png",
       España: "/images/españa.png",
       Venezuela: "/images/venezuela.png",
-      "42": "/images/nombre.png",
-    }[skin] ?? "/images/skins/astronaut-classic.png";
+      "42": "/images/astro42.png",
+    }[skin] ?? "/images/colombia.png";
 
   const handleSave = () => {
     // Aquí puedes levantar el estado al padre / guardar en contexto
@@ -62,10 +62,11 @@ export const Astronaut = () => {
           />
 
 			<div
-			className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden"
-			style={{ backgroundColor: "#282c34", color: "white" }}
-			onClick={(e) => e.stopPropagation()}
+				className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden font-mono"
+				style={{ backgroundColor: "#282c34", color: "white" }}
+				onClick={(e) => e.stopPropagation()}
 			>
+
 			{/* Header modal */}
 			<div className="flex items-center justify-between px-6 py-4 border-b border-gray-600">
 				<h2 id="astronaut-modal-title" className="text-xl font-bold">

@@ -9,9 +9,9 @@ export const Header: FC = () => {
           <img src="/images/logo.png" className="h-20 w-24" />
       </div>
         </div>
-     <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-auto">
-        <img src="/images/nombre.png" className="h-[130px] w-auto"/>
-      </div>
+     <div className="absolute top-0 left-1/2 -translate-x-[30%] pointer-events-auto">
+		<img src="/images/nombre.png" className="h-[130px] w-auto" />
+	</div>
 	  <Astronaut />
     </header>
   );
