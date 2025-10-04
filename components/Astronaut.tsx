@@ -33,7 +33,7 @@ export const Astronaut = () => {
   return (
     <>
       {/* Botón en header */}
-      <div className="absolute right-4 top-[20px] pointer-events-auto">
+      <div className="absolute right-16 top-[27px] pointer-events-auto">
         <button
           type="button"
           onClick={() => setIsOpen(true)}
@@ -62,10 +62,11 @@ export const Astronaut = () => {
           />
 
 			<div
-				className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden font-mono"
+				className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden modal-orbitron"
 				style={{ backgroundColor: "#282c34", color: "white" }}
 				onClick={(e) => e.stopPropagation()}
 			>
+
 
 			{/* Header modal */}
 			<div className="flex items-center justify-between px-6 py-4 border-b border-gray-600">
