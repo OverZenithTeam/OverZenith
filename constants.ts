@@ -1,5 +1,5 @@
 
-import type { Planet, Question } from './types/types';
+import type { Planet, Question, AstronautSkin, Skin } from './types/types';
 
 export const PLANET_DATA: Planet[] = [
   {
@@ -90,3 +90,38 @@ export const QUIZ_QUESTIONS: Question[] = [
     correctAnswer: 3,
   },
 ];
+
+export const ASTRONAUT_SKINS: AstronautSkin[] = [
+  {
+    id: "Default",
+    name: "Default Astronaut",
+    image: "./images/astronaut.png"
+  },
+  {
+    id: "Colombia",
+    name: "Colombian Astronaut",
+    image: "./images/colombia.png"
+  },
+  {
+    id: "España",
+    name: "Spanish Astronaut",
+    image: "./images/españa.png"
+  },
+  {
+    id: "Venezuela",
+    name: "Venezuelan Astronaut",
+    image: "./images/venezuela.png"
+  },
+  {
+    id: "42",
+    name: "42 School Astronaut",
+    image: "./images/astro42.png"
+  },
+  {
+    id: "Cat",
+    name: "Cat Astronaut",
+    image: "./images/cat.png"
+  }
+];
+
+export const SKIN_OPTIONS: Skin[] = ["Default", "Colombia", "España", "Venezuela", "42", "Cat"];

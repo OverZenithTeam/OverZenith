@@ -14,5 +14,13 @@ export interface Question {
   correctAnswer: number; // index of the correct option
 }
 
+export type Skin = "Default" | "Colombia" | "España" | "Venezuela" | "42";
+
+export interface AstronautSkin {
+  id: Skin;
+  name: string;
+  image: string;
+}
+
 
 
