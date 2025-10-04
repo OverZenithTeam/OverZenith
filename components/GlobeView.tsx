@@ -61,17 +61,26 @@ export default function GlobeView() {
     }
 
     // cámara Cupola
-    globe.pointOfView({ lat: 40.4168, lng: -3.7038, altitude: 1.066 }, 1200);
+    // Cámara bastante lejos
+	globe.pointOfView(
+	{ lat: 0, lng: 0, altitude: 3.2 }, // puedes ajustar 3.0–4.0 según tu pantalla
+	1200
+	);
 
-    // límites de zoom
-    const radius = globe.getGlobeRadius();
-    const controls = globe.controls?.();
-    if (controls) {
-      controls.autoRotate = false;
-      controls.enablePan = false;
-      controls.minDistance = radius * 1.02;
-      controls.maxDistance = radius * 3;
-    }
+	// Límites de zoom y centrado
+	const radius = globe.getGlobeRadius?.() ?? 100;
+	const controls = globe.controls?.();
+	if (controls) {
+	// sube el target a la mitad del radio para “bajar” la esfera
+	controls.target.set(0, radius * 0.5, 0);
+	controls.update();
+
+	controls.autoRotate = false;
+	controls.enablePan = false;
+	controls.minDistance = radius * 1.5;
+	controls.maxDistance = radius * 6;
+	}
+
 
     // rendimiento móvil
     const renderer = globe.renderer?.();

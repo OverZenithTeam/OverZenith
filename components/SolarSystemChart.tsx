@@ -27,9 +27,9 @@ export const SolarSystemChart: React.FC<SolarSystemChartProps> = ({ data }) => {
       >
         <CartesianGrid strokeDasharray="3 3" stroke="#e0e1dd" />
         <XAxis dataKey="name" stroke="#778da9" />
-        <YAxis 
-          stroke="#778da9" 
-          tickFormatter={(value) => `${(value as number / 1000).toLocaleString()}k`} 
+        <YAxis
+          stroke="#778da9"
+          tickFormatter={(value) => `${(value as number / 1000).toLocaleString()}k`}
         />
         <Tooltip
           contentStyle={{
