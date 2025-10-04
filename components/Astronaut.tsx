@@ -62,15 +62,16 @@ export const Astronaut = () => {
           />
 
 			<div
-				className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden modal-orbitron"
-				style={{ backgroundColor: "#282c34", color: "white" }}
-				onClick={(e) => e.stopPropagation()}
+			className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden font-mono"
+			style={{ backgroundColor: "#282c34", color: "white" }}
+			onClick={(e) => e.stopPropagation()}
 			>
+
 
 
 			{/* Header modal */}
 			<div className="flex items-center justify-between px-6 py-4 border-b border-gray-600">
-				<h2 id="astronaut-modal-title" className="text-xl font-bold">
+				<h2 id="astronaut-modal-title" className="text-xl font-mono">
 				Customize your Astronaut
 				</h2>
 				<button
@@ -96,9 +97,6 @@ export const Astronaut = () => {
 					alt={`Astronaut ${skin}`}
 					className="absolute inset-0 m-auto max-h-full max-w-full drop-shadow-xl"
 					/>
-					<div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg bg-black/60 text-white text-sm font-bold">
-					{name || "Astronaut"}
-					</div>
 				</div>
 				</div>
 
@@ -131,7 +129,7 @@ export const Astronaut = () => {
 						type="button"
 						key={s}
 						onClick={() => setSkin(s)}
-						className={`flex-1 rounded-lg border px-3 py-2 capitalize font-bold transition ${
+						className={`flex-1 rounded-lg border px-3 py-2 capitalize font-mono transition ${
 							skin === s
 							? "border-white text-white"
 							: "border-gray-500 text-gray-300 hover:border-white"
@@ -149,7 +147,7 @@ export const Astronaut = () => {
 					<button
 					type="button"
 					onClick={handleSave}
-					className="flex-1 border border-white text-white font-bold px-4 py-2 rounded-lg hover:bg-white hover:text-[#282c34] transition"
+					className="flex-1 border border-white text-white font-mono px-4 py-2 rounded-lg hover:bg-white hover:text-[#282c34] transition"
 					>
 					Save
 					</button>
@@ -159,7 +157,7 @@ export const Astronaut = () => {
 						setName("Astronaut");
 						setSkin("classic");
 					}}
-					className="px-4 py-2 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-[#282c34] transition"
+					className="px-4 py-2 border border-white text-white font-mono rounded-lg hover:bg-white hover:text-[#282c34] transition"
 					>
 					Reset
 					</button>
