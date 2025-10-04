@@ -11,7 +11,7 @@ const App: React.FC = () => {
   return (
     <div className="bg-white text-slate-800 min-h-screen font-sans">
       <Header />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <section className="text-center mb-20 animate-fade-in-up">
@@ -36,37 +36,7 @@ const App: React.FC = () => {
             <GlobeView />
           </div>
         </section>
-
-        {/* Planet Exploration Section */}
-        <section className="mb-20">
-          <h2 className="text-3xl font-bold text-space-blue mb-8 text-center">Explora los Planetas</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {PLANET_DATA.map((planet) => (
-              <PlanetCard key={planet.name} planet={planet} />
-            ))}
-          </div>
-        </section>
-
-        {/* Interactive Chart Section */}
-        <section className="mb-20 bg-slate-50 p-8 rounded-2xl shadow-lg border border-slate-200">
-          <h2 className="text-3xl font-bold text-space-blue mb-8 text-center">Comparación de Planetas</h2>
-          <p className="text-center text-comet-grey mb-8">
-            Esta gráfica interactiva te permite comparar los diámetros de los planetas del Sistema Solar. ¡Pasa el ratón sobre las barras para ver los datos exactos!
-          </p>
-          <div className="w-full h-96">
-            <SolarSystemChart data={PLANET_DATA} />
-          </div>
-        </section>
-
-        {/* Quiz Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-space-blue mb-8 text-center">Pon a Prueba tus Conocimientos</h2>
-          <div className="max-w-2xl mx-auto">
-            <Quiz questions={QUIZ_QUESTIONS} />
-          </div>
-        </section>
       </main>
-      
       <Footer />
     </div>
   );
