@@ -23,7 +23,7 @@ const App: FC = () => {
         </div>
         <Cupola hidden={hiddenCupola} />
         <SwitchCupola hidden={hiddenCupola} onClick={() => setHiddenCupola(!hiddenCupola)} />
-          {Array.from({ length: 10 }).map((_, i) => (
+          {Array.from({ length: 5 }).map((_, i) => (
                     <Asteroid key={i} size={[30, 100]} speed={0.4 + Math.random() * 0.3} zIndex={2} />
                   ))}
       </main>
