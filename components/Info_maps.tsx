@@ -18,105 +18,104 @@ export type PointInfo = {
 
 
 export const PLANET_POINTS: PointInfo[] = [
-  {
-  name: "Radiotelescopios (Atacama, Chile)",
+{
+  name: "Radio Telescopes (Atacama, Chile)",
   lat: -23.029,
   lng: -67.755,
-  title: "Radiotelescopios (Atacama, Chile)",
-  sectionTitle: "Cómo funcionan los radiotelescopios y qué información recogen", // <— AÑADIDO
+  title: "Radio Telescopes (Atacama, Chile)",
+  sectionTitle: "How radio telescopes work and what information they collect",
   description:
-    "En el desierto de Atacama se encuentra ALMA, uno de los radiotelescopios más grandes del mundo, compuesto por 66 antenas que observan el cielo en ondas milimétricas y submilimétricas.",
+    "In the Atacama Desert is ALMA, one of the largest radio telescopes in the world, composed of 66 antennas that observe the sky in millimeter and submillimeter waves.",
   bullets: [
-    "No captan luz visible, sino ondas de radio de cuerpos celestes.",
-    "Las antenas concentran la señal en un receptor que la convierte en impulsos eléctricos.",
-    "Procesado digital → imágenes/mapas en longitudes de onda invisibles al ojo humano.",
-    "Estudian formación de estrellas, estructura de galaxias, púlsares, agujeros negros y cuásares.",
-    "Permiten analizar moléculas del medio interestelar (pistas sobre formación de planetas).",
-    "Mediante interferometría, varias antenas operan como un 'súper telescopio' con más resolución."
+    "They do not capture visible light, but radio waves from celestial bodies.",
+    "The antennas focus the signal into a receiver that converts it into electrical impulses.",
+    "Digital processing → images/maps at wavelengths invisible to the human eye.",
+    "They study star formation, galaxy structure, pulsars, black holes, and quasars.",
+    "They allow analyzing molecules in the interstellar medium (clues about planet formation).",
+    "Through interferometry, multiple antennas operate as a 'super telescope' with higher resolution."
   ],
-  source: "ALMA Observatory, NASA – Radio Astronomy",
+  source: "ALMA Observatory, NASA – Radio Astronomy"
 },
-    {
+{
   name: "Florida, USA",
   lat: 27.9944,
   lng: -81.7603,
-  title: "Centro Espacial Kennedy (Florida, USA)",
-  sectionTitle: "Cómo funcionan los cohetes multietapa y por qué son esenciales para el espacio",
+  title: "Kennedy Space Center (Florida, USA)",
+  sectionTitle: "How multistage rockets work and why they are essential for space",
   description:
-    "Desde el Kennedy Space Center despegaron las misiones Apolo que llevaron al ser humano a la Luna.",
+    "The Apollo missions that took humans to the Moon launched from the Kennedy Space Center.",
   bullets: [
-    "Los cohetes multietapa superan la gravedad terrestre de manera eficiente.",
-    "Cada etapa tiene su propio combustible y motor.",
-    "La primera etapa proporciona el empuje inicial y luego se desprende para reducir peso.",
-    "Las siguientes etapas continúan acelerando hasta alcanzar la órbita o escapar de la gravedad terrestre.",
-    "Permite transportar cargas más pesadas y ahorrar combustible.",
-    "Los cohetes Apolo usaron tres etapas para llegar a la Luna."
+    "Multistage rockets overcome Earth's gravity efficiently.",
+    "Each stage has its own fuel and engine.",
+    "The first stage provides the initial thrust and then detaches to reduce weight.",
+    "Subsequent stages continue accelerating until reaching orbit or escaping Earth's gravity.",
+    "Allows transporting heavier payloads and saving fuel.",
+    "The Apollo rockets used three stages to reach the Moon."
   ],
   source: "NASA – Kennedy Space Center",
-  sourceUrl: "https://www.nasa.gov/centers/kennedy/home/index.html",
+  sourceUrl: "https://www.nasa.gov/centers/kennedy/home/index.html"
 },
- {
+{
   name: "Baikonur, Kazakhstan",
   lat: 45.9206,
   lng: 63.3422,
-  title: "Cosmódromo de Baikonur (Kazajistán)",
-  sectionTitle: "Qué es LEO y por qué es importante para misiones tripuladas y satélites",
+  title: "Baikonur Cosmodrome (Kazakhstan)",
+  sectionTitle: "What is LEO and why it is important for crewed missions and satellites",
   description:
-    "Desde Baikonur despegó Yuri Gagarin, el primer humano en el espacio.",
+    "Yuri Gagarin, the first human in space, launched from Baikonur.",
   bullets: [
-    "La órbita baja terrestre (LEO) se sitúa entre 200 y 2.000 km de altura.",
-    "Requiere menos energía para alcanzar la órbita que otras más altas.",
-    "Facilita comunicación constante y observación directa de la Tierra.",
-    "Es donde se ubican la ISS y la mayoría de satélites de observación.",
-    "Fue elegida para las primeras misiones tripuladas por su seguridad y eficiencia."
+    "Low Earth Orbit (LEO) is located between 200 and 2,000 km above Earth.",
+    "It requires less energy to reach orbit than higher orbits.",
+    "It enables constant communication and direct observation of Earth.",
+    "It is where the ISS and most observation satellites are located.",
+    "It was chosen for the first crewed missions due to its safety and efficiency."
   ],
   source: "Wikipedia – Low Earth Orbit",
-  sourceUrl: "https://en.wikipedia.org/wiki/Low_Earth_orbit",
-},
-  {
-  name: "Kourou, Guayana Francesa",
-  lat: 5.236,
-  lng: -52.776,
-  title: "Centro Espacial de Guayana (Kourou)",
-  sectionTitle: "Por qué la ubicación afecta el lanzamiento",
-  description:
-    "La ESA lanza cohetes desde Kourou para aprovechar su ubicación cercana al ecuador.",
-  bullets: [
-    "La Tierra rota de oeste a este, dando una velocidad extra de hasta 460 m/s en el ecuador.",
-    "Los cohetes necesitan menos combustible para alcanzar velocidad orbital.",
-    "Permite transportar cargas más pesadas y aumentar la eficiencia.",
-    "Por eso muchos centros espaciales se ubican en latitudes bajas."
-  ],
-  source: "Wikipedia – Guiana Space Centre",
-  sourceUrl: "https://en.wikipedia.org/wiki/Guiana_Space_Centre?utm_source=chatgpt.com",
-},
- {
-  name: "Microgravedad y NBL (Houston, EE.UU.)",
-  lat: 29.5502,
-  lng: -95.097,
-  title: "Centro de Control de Misión (Houston)",
-  sectionTitle: "Qué es la microgravedad y cómo afecta a astronautas y experimentos",
-  description:
-    "El Neutral Buoyancy Laboratory (NBL) es una piscina gigante donde los astronautas entrenan movimientos simulando la ingravidez del espacio.",
-  bullets: [
-    "La microgravedad se produce cuando un objeto está en caída libre continua alrededor de la Tierra.",
-    "Provoca que los cuerpos floten y los líquidos se comporten de manera distinta.",
-    "Efectos en el cuerpo humano: pérdida de masa ósea y muscular, cambios en la circulación y equilibrio.",
-    "Permite estudiar fluidos, combustión, biología y física de forma única.",
-    "El NBL entrena a los astronautas a moverse y usar herramientas sin peso y responder a emergencias."
-  ],
-  source: "NASA – NBL (Neutral Buoyancy Laboratory)",
-  sourceUrl: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory/?utm_source=chatgpt.com",
+  sourceUrl: "https://en.wikipedia.org/wiki/Low_Earth_orbit"
 },
 {
-  name: "La bomba de Hiroshima",
+  name: "Kourou, French Guiana",
+  lat: 5.236,
+  lng: -52.776,
+  title: "Guiana Space Centre (Kourou)",
+  sectionTitle: "Why the location affects the launch",
+  description:
+    "The ESA launches rockets from Kourou to take advantage of its location near the equator.",
+  bullets: [
+    "The Earth rotates from west to east, giving an extra speed of up to 460 m/s at the equator.",
+    "Rockets require less fuel to reach orbital velocity.",
+    "It allows carrying heavier payloads and increases efficiency.",
+    "That’s why many space centers are located at low latitudes."
+  ],
+  source: "Wikipedia – Guiana Space Centre",
+  sourceUrl: "https://en.wikipedia.org/wiki/Guiana_Space_Centre?utm_source=chatgpt.com"
+},
+{
+  name: "Microgravity and NBL (Houston, USA)",
+  lat: 29.5502,
+  lng: -95.097,
+  title: "Mission Control Center (Houston)",
+  sectionTitle: "What is microgravity and how does it affect astronauts and experiments",
+  description:
+    "The Neutral Buoyancy Laboratory (NBL) is a giant pool where astronauts train movements simulating the weightlessness of space.",
+  bullets: [
+    "Microgravity occurs when an object is in continuous free fall around the Earth.",
+    "It causes bodies to float and liquids to behave differently.",
+    "Effects on the human body: loss of bone and muscle mass, changes in circulation and balance.",
+    "It allows studying fluids, combustion, biology, and physics in a unique way.",
+    "The NBL trains astronauts to move and use tools without weight and respond to emergencies."
+  ],
+  source: "NASA – NBL (Neutral Buoyancy Laboratory)",
+  sourceUrl: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory/?utm_source=chatgpt.com"
+},
+{
+  name: "The Hiroshima Bomb",
   lat: 34.3853,
   lng: 132.4553,
-  title: "La bomba de Hiroshima",
-  sectionTitle: "¿Por qué la bomba de Hiroshima explotó en el aire y no al impactar con el suelo?",
+  title: "The Hiroshima Bomb",
+  sectionTitle: "Why did the Hiroshima bomb explode in the air and not upon hitting the ground?",
   bullets: [
-        "Porque estaba diseñada para detonar aproximadamente a 600 metros sobre la ciudad para maximizar el daño por onda expansiva y calor, afectando más edificios y personas que si hubiera explotado en el suelo. Muchos piensan que “cayó y explotó en el suelo”, pero la estrategia de altura fue clave para su devastación.",
-
-  ],
+    "Because it was designed to detonate approximately 600 meters above the city to maximize damage from the blast wave and heat, affecting more buildings and people than if it had exploded on the ground. Many think it 'fell and exploded on the ground,' but the altitude strategy was key to its devastation."
+  ]
 }
 ];
