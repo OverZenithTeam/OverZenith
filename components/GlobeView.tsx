@@ -157,6 +157,7 @@ export default function GlobeView() {
         ref={globeRef as any}
         enablePointerInteraction
         globeImageUrl="../images/earth-blue-marble.jpg"
+		//
         bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="https://unpkg.com/three-globe/example/img/night-sky.png"
         showAtmosphere
@@ -214,12 +215,12 @@ export default function GlobeView() {
                   className="w-full rounded-xl shadow"
                   loading="lazy"
                 />
-              )}           
+              )}
 
               {/* Descripción */}
               {selected.data.description && (
                 <p className="text-sm text-gray-300">{selected.data.description}</p>
-              )}          
+              )}
               <h3 className="font-semibold text-white mb-2">
                 {selected.data.sectionTitle}
               </h3>
@@ -230,7 +231,7 @@ export default function GlobeView() {
                   {selected.data.bullets.map((b, i) => <li key={i}>{b}</li>)}
                   </ul>
                 </section>
-              ) : null}          
+              ) : null}
               {/* Lat/Lng + fuente */}
               <div className="text-xs text-gray-400">
                 <p>
