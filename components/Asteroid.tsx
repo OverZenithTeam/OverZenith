@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 type Bounds = {
   width: number;
@@ -17,6 +17,7 @@ type Props = {
   zIndex?: number;
   onBounce?: (side: "left" | "right" | "top" | "bottom") => void;
   src?: string;
+  infoText?: string; // 👈 texto informativo que mostramos en el modal
 };
 
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -34,6 +35,7 @@ export const Asteroide: React.FC<Props> = ({
   zIndex = 1,
   onBounce,
   src = "images/asteoride.png",
+  infoText = "Small asteroids and meteoroids constantly enter Earth's atmosphere, but most burn up before reaching the ground, protecting us from larger impacts.",
 }) => {
   const prefersReduced = useMemo(
     () => window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
@@ -41,6 +43,9 @@ export const Asteroide: React.FC<Props> = ({
   );
   const boundsRef = useRef<Bounds>({ width: window.innerWidth, height: window.innerHeight });
   const resizeId = useRef<number | null>(null);
+
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     const onResize = () => {
       if (resizeId.current) cancelAnimationFrame(resizeId.current);
@@ -130,27 +135,50 @@ export const Asteroide: React.FC<Props> = ({
     top: 0,
     width: sizePx,
     height: sizePx,
-    pointerEvents: "none",
+    pointerEvents: "auto", // 👈 ahora sí recibe clicks
     willChange: "transform",
     zIndex,
+    cursor: "pointer",
     transform: `translate3d(${x.current}px, ${y.current}px, 0) rotate(${rot.current}deg)`,
   };
 
   return (
-    <div ref={elRef} style={baseStyle} aria-hidden>
-      <img
-        src={src}
-        alt=""
-        draggable={false}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "contain",
-          userSelect: "none",
-          display: "block",
-        }}
-      />
-    </div>
+    <>
+      <div
+        ref={elRef}
+        style={baseStyle}
+        aria-hidden
+        onClick={() => setShowModal(true)}
+      >
+        <img
+          src={src}
+          alt="Asteroid"
+          draggable={false}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            userSelect: "none",
+            display: "block",
+          }}
+        />
+      </div>
+
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+          <div className="bg-gray-800 text-white rounded-lg p-6 w-80 shadow-lg text-center">
+            <h2 className="text-lg font-bold mb-3">Curiosities about asteroids 🪐</h2>
+            <p className="mb-4">{infoText}</p>
+            <button
+              onClick={() => setShowModal(false)}
+              className="px-4 py-2 rounded bg-red-500 hover:bg-red-600"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
