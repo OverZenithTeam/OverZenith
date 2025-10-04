@@ -31,14 +31,15 @@ export default function GlobeView() {
 
   // puntos normales (API de react-globe.gl)
   const points = useMemo(
-    () => [
-      { name: "Madrid", lat: 40.4168, lng: -3.7038 },
-      { name: "Vigo", lat: 42.2406, lng: -8.7207 },
-      { name: "Caracas", lat: 10.4806, lng: -66.9036 },
-      { name: "New York", lat: 40.7128, lng: -74.006 },
-    ],
-    []
-  );
+	() => [
+		{ name: "Florida, USA", lat: 27.9944, lng: -81.7603 },
+		{ name: "Baikonur, Kazakhstan", lat: 45.9206, lng: 63.3422 },
+		{ name: "Chile", lat: -33.4489, lng: -70.6693 },
+		{ name: "Houston, USA", lat: 29.5502, lng: -95.0970 },
+		{ name: "Kourou Space Center, French Guiana", lat: 5.2360, lng: -52.7760 },
+	],
+	[]
+ );
 
   // datos para los objetos custom (nuestras esferas flotantes)
   const customLayer = useMemo(
