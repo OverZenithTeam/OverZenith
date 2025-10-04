@@ -83,7 +83,7 @@ export default function GlobeView() {
       <Globe
         ref={globeRef as any}
         // texturas y atmósfera
-        globeImageUrl="https://unpkg.com/three-globe/example/img/earth-night.jpg"
+        globeImageUrl="../images/earth-blue-marble.jpg"
         bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="https://unpkg.com/three-globe/example/img/night-sky.png"
         showAtmosphere
