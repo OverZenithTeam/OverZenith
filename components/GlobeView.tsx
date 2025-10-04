@@ -1,98 +1,122 @@
+// src/components/GlobeView.tsx
 import { useEffect, useMemo, useRef } from "react";
+import Globe from "react-globe.gl";
+import * as THREE from "three";
 
-// Nota: el paquete no exporta tipos TS completos.
-// Usaremos "any" para el ref del globo.
 type GlobeRef = any;
+
+/* ====== helpers para convertir lat/lng a coordenadas XYZ ====== */
+function deg2rad(d: number) {
+  return (d * Math.PI) / 180;
+}
+function latLngToXYZ(lat: number, lng: number, radius: number) {
+  const phi = deg2rad(90 - lat);
+  const theta = deg2rad(lng + 180);
+  const x = radius * Math.sin(phi) * Math.cos(theta);
+  const y = radius * Math.cos(phi);
+  const z = radius * Math.sin(phi) * Math.sin(theta);
+  return { x, y, z };
+}
+
+/* ====== crea un marcador personalizado (objeto Three.js) ====== */
+function createCustomMarker(color: number) {
+  const geometry = new THREE.SphereGeometry(0.05, 16, 16);
+  const material = new THREE.MeshBasicMaterial({ color });
+  const mesh = new THREE.Mesh(geometry, material);
+  return mesh;
+}
 
 export default function GlobeView() {
   const globeRef = useRef<GlobeRef>(null);
 
-  // Datos de ejemplo (cámbialos luego por tu API o lo que sea)
+  // puntos normales (API de react-globe.gl)
   const points = useMemo(
     () => [
-      { name: "Madrid",  lat: 40.4168, lng: -3.7038 },
-      { name: "Vigo",    lat: 42.2406, lng: -8.7207 },
+      { name: "Madrid", lat: 40.4168, lng: -3.7038 },
+      { name: "Vigo", lat: 42.2406, lng: -8.7207 },
       { name: "Caracas", lat: 10.4806, lng: -66.9036 },
-      { name: "New York",lat: 40.7128, lng: -74.0060 }
+      { name: "New York", lat: 40.7128, lng: -74.006 },
     ],
     []
   );
 
-  // Ajustes de cámara/controles después de montar
+  // datos para los objetos custom (nuestras esferas flotantes)
+  const customLayer = useMemo(
+    () => [
+      { lat: 40.4168, lng: -3.7038, color: 0xff4d4d, alt: 0.02 }, // Madrid
+      { lat: 42.2406, lng: -8.7207, color: 0x00d4ff, alt: 0.02 }, // Vigo
+    ],
+    []
+  );
+
   useEffect(() => {
     const globe = globeRef.current;
     if (!globe) return;
 
-    // Posiciona la cámara inicial hacia Madrid (altitude = zoom)
-    globe.pointOfView({ lat: 40.4168, lng: -3.7038, altitude: 1.8 }, 1500);
-
-    // Controles de órbita
-    const controls = globe.controls?.();
-    if (controls) {
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.6;
-      controls.enablePan = false;
-      controls.minDistance = 150;
-      controls.maxDistance = 520;
+    // iluminar la textura nocturna (emissive)
+    const mat = globe.globeMaterial?.();
+    if (mat) {
+      mat.emissive = new THREE.Color("#334155");
+      mat.emissiveIntensity = 0.28;
     }
 
-    // Ajusta DPR en móviles para no fundir GPU
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    globe.renderer?.().setPixelRatio(dpr);
+    // cámara Cupola
+    globe.pointOfView({ lat: 40.4168, lng: -3.7038, altitude: 1.066 }, 1200);
+
+    // límites de zoom
+    const radius = globe.getGlobeRadius();
+    const controls = globe.controls?.();
+    if (controls) {
+      controls.autoRotate = false;
+      controls.enablePan = false;
+      controls.minDistance = radius * 1.02;
+      controls.maxDistance = radius * 3;
+    }
+
+    // rendimiento móvil
+    const renderer = globe.renderer?.();
+    if (renderer) renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   }, []);
 
   return (
-    <div className="globe-wrap">
-      {/* 
-        Importación dinámica para evitar SSR y cargar solo en cliente.
-        Vite no hace SSR por defecto, pero esto evita que el bundler
-        evalúe WebGL antes de tiempo.
-      */}
-      <GlobeInner
-        ref={globeRef}
-        points={points}
+    <div style={{ width: "100%", height: "100%" }}>
+      <Globe
+        ref={globeRef as any}
+        // texturas y atmósfera
+        globeImageUrl="https://unpkg.com/three-globe/example/img/earth-night.jpg"
+        bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
+        backgroundImageUrl="https://unpkg.com/three-globe/example/img/night-sky.png"
+        showAtmosphere
+        atmosphereColor="aliceblue"
+        atmosphereAltitude={0.18}
+
+        // puntos normales
+        pointsData={points}
+        pointLat="lat"
+        pointLng="lng"
+        pointAltitude={() => 0.01}
+        pointRadius={0.5}
+        pointLabel={(d: any) =>
+          `${d.name}\n(${d.lat.toFixed(2)}, ${d.lng.toFixed(2)})`
+        }
+
+        // ====== capa custom ======
+        customLayerData={customLayer}
+        customThreeObject={(d: any) => {
+          // devolvemos un objeto Three para cada elemento
+          const mesh = createCustomMarker(d.color);
+          // guardamos sus coords para el updater
+          mesh.userData = { lat: d.lat, lng: d.lng, alt: d.alt };
+          return mesh;
+        }}
+        customThreeObjectUpdate={(obj: any, d: any, globeRadius?: number) => {
+          const r = globeRadius ?? globeRef.current?.getGlobeRadius?.() ?? 100;
+          const { lat, lng, alt } = obj.userData;
+          const { x, y, z } = latLngToXYZ(lat, lng, r * (1 + alt));
+          obj.position.set(x, y, z);
+          obj.lookAt(0, 0, 0);
+        }}
       />
     </div>
   );
 }
-
-/** Separo el inner para asegurar carga solo en cliente */
-function GlobeInner(
-  { points }: { points: Array<{ name: string; lat: number; lng: number }> },
-  ref?: React.Ref<GlobeRef>
-) {
-  // Cargamos el componente solo en cliente para evitar cualquier “window is not defined”
-  const Globe = (globalThis as any).window
-    ? require("react-globe.gl").default
-    : null;
-
-  if (!Globe) return null;
-
-  return (
-    <Globe
-      ref={ref as any}
-      // Texturas (puedes cambiarlas por las tuyas)
-      globeImageUrl="https://unpkg.com/three-globe/example/img/earth-dark.jpg"
-      bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
-      backgroundImageUrl="https://unpkg.com/three-globe/example/img/night-sky.png"
-      showAtmosphere
-      atmosphereAltitude={0.25}
-
-      // Capa de puntos
-      pointsData={points}
-      pointLat="lat"
-      pointLng="lng"
-      pointAltitude={() => 0.01}
-      pointRadius={0.5}
-      pointLabel={(d: any) => `${d.name}\n(${d.lat.toFixed(2)}, ${d.lng.toFixed(2)})`}
-      // Nota: si quieres color por punto, usa pointColor={(d)=>...}
-    />
-  );
-}
-
-// Necesario para forwardRef en el inner
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(GlobeInner as any) = Object.assign(
-  (GlobeInner as any),
-  { displayName: "GlobeInner" }
-);
