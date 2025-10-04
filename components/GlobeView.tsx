@@ -1,11 +1,24 @@
 // src/components/GlobeView.tsx
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import Globe from "react-globe.gl";
 import * as THREE from "three";
+import { PLANET_POINTS,PointInfo } from "./Info_maps";
 
 type GlobeRef = any;
 
-/* ====== helpers para convertir lat/lng a coordenadas XYZ ====== */
+type PointItem = PointInfo;
+type CustomItem = {
+  lat: number;
+  lng: number;
+  alt: number;
+  color: number;
+  name?: string;
+};
+
+const points = PLANET_POINTS
+
+
+/* ====== helpers ====== */
 function deg2rad(d: number) {
   return (d * Math.PI) / 180;
 }
@@ -17,8 +30,6 @@ function latLngToXYZ(lat: number, lng: number, radius: number) {
   const z = radius * Math.sin(phi) * Math.sin(theta);
   return { x, y, z };
 }
-
-/* ====== crea un marcador personalizado (objeto Three.js) ====== */
 function createCustomMarker(color: number) {
   const geometry = new THREE.SphereGeometry(0.05, 16, 16);
   const material = new THREE.MeshBasicMaterial({ color });
@@ -26,26 +37,89 @@ function createCustomMarker(color: number) {
   return mesh;
 }
 
+/* ====== Modal super simple ====== */
+function Modal({
+  title,
+  children,
+  onClose
+}: {
+  title: string;
+  children: React.ReactNode;
+  onClose: () => void;
+}) {
+  // Cerrar con Esc
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    // bloquear scroll del body
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[999] flex items-center justify-center"
+      aria-modal="true"
+      role="dialog"
+      aria-labelledby="modal-title"
+    >
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/50"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      {/* Dialog */}
+     <div className="relative mx-4 w-full max-w-md sm:max-w-2xl lg:max-w-4xl rounded-2xl bg-white/90 backdrop-blur-md p-10 shadow-2xl">
+        <div className="mb-4 flex items-start justify-between">
+          <h2 id="modal-title" className="text-lg font-semibold text-slate-800">
+            {title}
+          </h2>
+          <button
+            onClick={onClose}
+            className="rounded-xl px-2 py-1 text-sm text-slate-500 hover:bg-slate-100"
+            aria-label="Cerrar"
+          >
+            ✕
+          </button>
+        </div>
+        <div className="text-sm text-slate-700">{children}</div>
+        <div className="mt-6 flex justify-end">
+          <button
+            onClick={onClose}
+            className="rounded-xl px-4 py-2 text-sm font-medium text-white bg-slate-800 hover:bg-slate-700"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function GlobeView() {
   const globeRef = useRef<GlobeRef>(null);
+  const [selected, setSelected] = useState<
+    | { type: "point"; data: PointItem }
+    | { type: "custom"; data: CustomItem }
+    | null
+  >(null);
 
-  // puntos normales (API de react-globe.gl)
-  const points = useMemo(
-	() => [
-		{ name: "Florida, USA", lat: 27.9944, lng: -81.7603 },
-		{ name: "Baikonur, Kazakhstan", lat: 45.9206, lng: 63.3422 },
-		{ name: "Chile", lat: -33.4489, lng: -70.6693 },
-		{ name: "Houston, USA", lat: 29.5502, lng: -95.0970 },
-		{ name: "Kourou Space Center, French Guiana", lat: 5.2360, lng: -52.7760 },
-	],
-	[]
- );
+  const setCanvasCursor = useCallback((cursor: string) => {
+    const canvas = globeRef.current?.domElement?.();
+    if (canvas) canvas.style.cursor = cursor;
+  }, []);
 
-  // datos para los objetos custom (nuestras esferas flotantes)
-  const customLayer = useMemo(
+  const customLayer = useMemo<CustomItem[]>(
     () => [
-      { lat: 40.4168, lng: -3.7038, color: 0xff4d4d, alt: 0.02 }, // Madrid
-      { lat: 42.2406, lng: -8.7207, color: 0x00d4ff, alt: 0.02 }, // Vigo
+      { name: "Madrid", lat: 40.4168, lng: -3.7038, color: 0xff4d4d, alt: 0.02 },
+      { name: "Vigo", lat: 42.2406, lng: -8.7207, color: 0x00d4ff, alt: 0.02 }
     ],
     []
   );
@@ -53,37 +127,22 @@ export default function GlobeView() {
   useEffect(() => {
     const globe = globeRef.current;
     if (!globe) return;
-
-    // iluminar la textura nocturna (emissive)
     const mat = globe.globeMaterial?.();
     if (mat) {
       mat.emissive = new THREE.Color("#334155");
       mat.emissiveIntensity = 0.28;
     }
-
-    // cámara Cupola
-    // Cámara bastante lejos
-	globe.pointOfView(
-	{ lat: 0, lng: 0, altitude: 3.2 }, // puedes ajustar 3.0–4.0 según tu pantalla
-	1200
-	);
-
-	// Límites de zoom y centrado
-	const radius = globe.getGlobeRadius?.() ?? 100;
-	const controls = globe.controls?.();
-	if (controls) {
-	// sube el target a la mitad del radio para “bajar” la esfera
-	controls.target.set(0, radius * 0.5, 0);
-	controls.update();
-
-	controls.autoRotate = false;
-	controls.enablePan = false;
-	controls.minDistance = radius * 1.5;
-	controls.maxDistance = radius * 6;
-	}
-
-
-    // rendimiento móvil
+    globe.pointOfView({ lat: 0, lng: 0, altitude: 3.2 }, 1200);
+    const radius = globe.getGlobeRadius?.() ?? 100;
+    const controls = globe.controls?.();
+    if (controls) {
+      controls.target.set(0, radius * 0.5, 0);
+      controls.update();
+      controls.autoRotate = false;
+      controls.enablePan = false;
+      controls.minDistance = radius * 1.5;
+      controls.maxDistance = radius * 6;
+    }
     const renderer = globe.renderer?.();
     if (renderer) renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   }, []);
@@ -92,41 +151,130 @@ export default function GlobeView() {
     <div style={{ width: "100%", height: "100%" }}>
       <Globe
         ref={globeRef as any}
-        // texturas y atmósfera
+        enablePointerInteraction
         globeImageUrl="../images/earth-blue-marble.jpg"
         bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="https://unpkg.com/three-globe/example/img/night-sky.png"
         showAtmosphere
         atmosphereColor="aliceblue"
         atmosphereAltitude={0.18}
-
-        // puntos normales
         pointsData={points}
         pointLat="lat"
         pointLng="lng"
         pointAltitude={() => 0.01}
         pointRadius={0.5}
-        pointLabel={(d: any) =>
+        pointLabel={(d: PointItem) =>
           `${d.name}\n(${d.lat.toFixed(2)}, ${d.lng.toFixed(2)})`
         }
-
-        // ====== capa custom ======
+        pointsMerge={false}
+        onPointHover={(p: PointItem | null) => setCanvasCursor(p ? "pointer" : "grab")}
+        onPointClick={(p: PointItem, _event: MouseEvent) => {
+          setSelected({ type: "point", data: p });
+        }}
         customLayerData={customLayer}
-        customThreeObject={(d: any) => {
-          // devolvemos un objeto Three para cada elemento
+        customThreeObject={(d: CustomItem) => {
           const mesh = createCustomMarker(d.color);
-          // guardamos sus coords para el updater
-          mesh.userData = { lat: d.lat, lng: d.lng, alt: d.alt };
+          mesh.userData = { lat: d.lat, lng: d.lng, alt: d.alt, name: d.name, color: d.color };
           return mesh;
         }}
-        customThreeObjectUpdate={(obj: any, d: any, globeRadius?: number) => {
+        customThreeObjectUpdate={(obj: any, _d: CustomItem, globeRadius?: number) => {
           const r = globeRadius ?? globeRef.current?.getGlobeRadius?.() ?? 100;
-          const { lat, lng, alt } = obj.userData;
+          const { lat, lng, alt } = obj.userData as CustomItem;
           const { x, y, z } = latLngToXYZ(lat, lng, r * (1 + alt));
           obj.position.set(x, y, z);
           obj.lookAt(0, 0, 0);
         }}
+        onCustomLayerHover={(obj: any | null) => setCanvasCursor(obj ? "pointer" : "grab")}
+        onCustomLayerClick={(obj: any, _event: MouseEvent) => {
+          const data = obj?.userData as CustomItem | undefined;
+          if (data) setSelected({ type: "custom", data });
+        }}
       />
+
+      {/* === Modal === */}
+      {selected && (
+        <Modal
+          title={
+            selected.type === "point"
+              ? (selected.data.title ?? selected.data.name)
+                : (selected.data.name ?? "Ubicación")
+}
+          onClose={() => setSelected(null)}
+                  >
+                    {selected.type === "point" ? (
+            <article className="space-y-4">
+              {selected.data.image && (
+                <img
+                  src={selected.data.image}
+                  alt={selected.data.title ?? selected.data.name}
+                  className="w-full rounded-xl shadow"
+                  loading="lazy"
+                />
+              )}           
+
+              {/* Descripción */}
+              {selected.data.description && (
+                <p className="text-sm text-slate-700">{selected.data.description}</p>
+              )}           
+
+              {/* Bullets pedagógicos */}
+              {selected.data.bullets?.length ? (
+                <section>
+                 {selected.data.source && (
+                    <p className="mt-1">
+                      <span className="font-semibold text-slate-700">Fuente:</span>{" "}
+                      {selected.data.sourceUrl ? (
+                        <a href={selected.data.sourceUrl} target="_blank" rel="noreferrer" className="underline">
+                          {selected.data.source}
+                        </a>
+                      ) : (
+                        <span>{selected.data.source}</span>
+                      )}
+                    </p>
+                  )}
+                  <ul className="list-disc pl-5 space-y-1 text-sm text-slate-700">
+                    {selected.data.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                  </ul>
+                </section>
+              ) : null}          
+              {/* Lat/Lng + fuente */}
+              <div className="text-xs text-slate-500">
+                <p>
+                  Lat: <span className="font-mono">{selected.data.lat.toFixed(3)}</span> ·
+                  Lng: <span className="font-mono">{selected.data.lng.toFixed(3)}</span>
+                </p>
+                {selected.data.source && (
+                  <p className="mt-1">
+                    <span className="font-semibold text-slate-700">Fuente:</span> {selected.data.source}
+                  </p>
+                )}
+              </div>
+            </article>
+          ) : (
+
+            <div className="space-y-2">
+              <p className="font-medium">Tipo: Custom</p>
+              <p>
+                Lat: <span className="font-mono">{selected.data.lat.toFixed(4)}</span>
+              </p>
+              <p>
+                Lng: <span className="font-mono">{selected.data.lng.toFixed(4)}</span>
+              </p>
+              <p>
+                Alt: <span className="font-mono">{selected.data.alt}</span>
+              </p>
+              <p className="flex items-center gap-2">
+                Color:
+                <span
+                  className="inline-block h-4 w-4 rounded"
+                  style={{ background: `#${selected.data.color.toString(16).padStart(6, "0")}` }}
+                  aria-label="color"
+                />
+              </p>
+            </div>
+          )}
+        </Modal>
+      )}
     </div>
   );
 }
