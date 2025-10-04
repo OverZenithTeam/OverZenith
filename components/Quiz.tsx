@@ -1,12 +1,12 @@
 
-import React, { useState } from 'react';
+import { useState, type FC } from 'react';
 import type { Question } from '../types/types';
 
 interface QuizProps {
   questions: Question[];
 }
 
-export const Quiz: React.FC<QuizProps> = ({ questions }) => {
+export const Quiz: FC<QuizProps> = ({ questions }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: number }>({});
   const [showResults, setShowResults] = useState(false);
@@ -24,7 +24,7 @@ export const Quiz: React.FC<QuizProps> = ({ questions }) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
-  
+
   const handlePrevQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
@@ -57,8 +57,8 @@ export const Quiz: React.FC<QuizProps> = ({ questions }) => {
           Has acertado {score} de {questions.length} preguntas.
         </p>
         <div className="w-full bg-slate-200 rounded-full h-4 mb-6">
-          <div 
-            className="bg-green-500 h-4 rounded-full transition-all duration-500" 
+          <div
+            className="bg-green-500 h-4 rounded-full transition-all duration-500"
             style={{ width: `${(score / questions.length) * 100}%` }}
           ></div>
         </div>

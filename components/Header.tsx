@@ -1,6 +1,6 @@
-import React from 'react';
+import { type FC} from 'react';
 
-export const Header: React.FC = () => {
+export const Header: FC = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 h-16 pointer-events-none">
       <div className="absolute top-[18px] left-[120px] flex items-center">
