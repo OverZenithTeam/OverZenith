@@ -1,27 +1,18 @@
-
 import React from 'react';
-
-const Icon: React.FC<{ className?: string }> = ({ className }) => (
-  <img
-    src="/images/logo.png"
-    alt="OverZenith"
-    className={className}
-  />
-);
 
 export const Header: React.FC = () => {
   return (
-    <header className="sticky top-0 z-50 bg-red shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Icon className="h-12 w-12 text-blue-600" />
-            <span className="ml-3 text-xl font-bold text-space-blue">
-              OverZenith
-            </span>
-          </div>
+    <header className="fixed top-0 left-0 w-full z-50 h-16 pointer-events-none">
+      <div className="absolute top-[18px] left-[120px] flex items-center">
+        <div className="pointer-events-auto" >
+          <img src="/images/logo.png" className="h-20 w-24" />
+      </div>
         </div>
+     <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-auto">
+        <img src="/images/nombre.png" className="h-[130px] w-auto"/>
       </div>
     </header>
   );
 };
+
+

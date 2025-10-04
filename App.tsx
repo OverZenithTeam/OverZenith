@@ -12,24 +12,13 @@ const FOOTER_H = 56
 
 const App: React.FC = () => {
   return (
-   <div className="bg-white text-slate-800 min-h-screen font-sans">
-      <main
-        className="w-full"
-        style={{
-          height: `calc(100vh - ${HEADER_H + FOOTER_H}px)`,
-        }}
-      >
-		<div style={{
-			height: HEADER_H
-		}}>
-			<Header />
-		</div>
-        <div className="w-full h-full">
+    <div className="text-slate-800 min-h-screen font-sans">
+      <Header />
+      <main className="relative w-full h-screen overflow-hidden">
+        <div className="absolute inset-0">
           <GlobeView />
         </div>
       </main>
-
-      {/* ⚓ Footer */}
       <div style={{ height: FOOTER_H }}>
         <Footer />
       </div>
