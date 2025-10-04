@@ -3,7 +3,7 @@ import { Astronaut } from "./Astronaut";
 
 export const Header: FC = () => {
   return (
-    <header className="fixed top-0 left-0 w-full z-50 h-16 pointer-events-none">
+    <header className="fixed top-0 left-0 w-full z-50 h-16">
       <div className="absolute top-[18px] left-[40px] flex items-center">
         <div className="pointer-events-auto" >
           <img src="/images/logo.png" className="h-20 w-24" />
