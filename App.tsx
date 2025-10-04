@@ -7,37 +7,33 @@ import { Footer } from './components/Footer';
 import { PLANET_DATA, QUIZ_QUESTIONS } from './constants';
 import GlobeView from "./components/GlobeView";
 
+const HEADER_H = 64;
+const FOOTER_H = 56
+
 const App: React.FC = () => {
   return (
-    <div className="bg-white text-slate-800 min-h-screen font-sans">
-      <Header />
+   <div className="bg-white text-slate-800 min-h-screen font-sans">
+      {/* 🧭 Header */}
+      <div style={{ height: HEADER_H }}>
+        <Header />
+      </div>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <section className="text-center mb-20 animate-fade-in-up">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-space-blue mb-4">
-            Bienvenido al Sistema Solar
-          </h1>
-          <p className="text-lg md:text-xl text-comet-grey max-w-3xl mx-auto">
-            Embárcate en un viaje a través de nuestro vecindario cósmico. Explora los planetas, visualiza sus tamaños y pon a prueba tus conocimientos.
-          </p>
-        </section>
-
-        {/* 🌍 Globe 3D Section (nuevo) */}
-        <section className="mb-20 bg-slate-50 p-4 md:p-6 rounded-2xl shadow-lg border border-slate-200">
-          <h2 className="text-3xl font-bold text-space-blue mb-4 text-center">
-            La Tierra en 3D
-          </h2>
-          <p className="text-center text-comet-grey mb-6">
-            Mueve, haz zoom y explora. Marcadores de ejemplo incluidos (Madrid, Vigo, Caracas, NYC).
-          </p>
-          {/* Altura real para que el canvas de WebGL se vea */}
-          <div className="w-full h-[70vh]">
-            <GlobeView />
-          </div>
-        </section>
+      {/* 🌍 Globe ocupa el espacio restante de la pantalla */}
+      <main
+        className="w-full"
+        style={{
+          height: `calc(100vh - ${HEADER_H + FOOTER_H}px)`,
+        }}
+      >
+        <div className="w-full h-full">
+          <GlobeView />
+        </div>
       </main>
-      <Footer />
+
+      {/* ⚓ Footer */}
+      <div style={{ height: FOOTER_H }}>
+        <Footer />
+      </div>
     </div>
   );
 };
