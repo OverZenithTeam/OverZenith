@@ -5,7 +5,6 @@ import { PLANET_POINTS,PointInfo } from "./Info_maps";
 import { useExperienceContext } from "../contexts/ExperienceProvider";
 import { useXPContext } from "../contexts/XPContext";
 import cloudsImg from "../images/clouds.png";
-import globeImg from "../images/earth-blue-marble.jpg";
 
 type GlobeRef = any;
 
@@ -168,7 +167,7 @@ export default function GlobeView() {
       <Globe
         ref={globeRef as any}
         enablePointerInteraction
-        globeImageUrl={globeImg}
+        globeImageUrl="earth-blue-marble.jpg"
 		//
         bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="https://unpkg.com/three-globe/example/img/night-sky.png"

@@ -108,7 +108,7 @@ export const ASTRONAUT_SKINS: AstronautSkin[] = [
     image: astronautColombia
   },
   {
-    id: "España",
+    id: "Spain",
     name: "Spanish Astronaut",
     image: astronautEspana
   },
@@ -129,7 +129,7 @@ export const ASTRONAUT_SKINS: AstronautSkin[] = [
   }
 ];
 
-export const SKIN_OPTIONS: Skin[] = ["Default", "Colombia", "España", "Venezuela", "42", "Cat"];
+export const SKIN_OPTIONS: Skin[] = ["Default", "Colombia", "Spain", "Venezuela", "42", "Cat"];
 
 // ========== SISTEMA DE EXPERIENCIA ==========
 

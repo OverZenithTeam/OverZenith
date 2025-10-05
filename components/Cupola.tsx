@@ -10,7 +10,7 @@ const Cupola: FC<CupolaProps> = ({ hidden = false }) => {
   return (
     <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
       <img
-        src={fondo}
+        src="cupula.png"
         alt="Cupola view"
         className="absolute inset-0 w-full h-full object-cover"
         style={{ zIndex: 1 }}
