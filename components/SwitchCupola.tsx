@@ -8,14 +8,16 @@ interface QuizState {
   selected: string | null;
   failed: boolean;
   answers: { [key: number]: string };
+  completed: boolean;
 }
 
 interface Props {
   hidden: boolean;
   onClick: () => void;
+  onXPGain?: (amount: number, reason: string) => void;
 }
 
-export const SwitchCupola: FC<Props> = ({ hidden, onClick }) => {
+export const SwitchCupola: FC<Props> = ({ hidden, onClick, onXPGain }) => {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [hovered, setHovered] = useState(false); // control hover para estrellas
   const [quizState, setQuizState] = useState<QuizState | undefined>(undefined);

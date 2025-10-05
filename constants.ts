@@ -125,3 +125,73 @@ export const ASTRONAUT_SKINS: AstronautSkin[] = [
 ];
 
 export const SKIN_OPTIONS: Skin[] = ["Default", "Colombia", "España", "Venezuela", "42", "Cat"];
+
+// ========== SISTEMA DE EXPERIENCIA ==========
+
+export const XP_REWARDS = {
+  FIRST_TIME_EARTH_POINT: 50,    // Primera vez que abres un punto en la Tierra
+  FIRST_TIME_ASTEROID: 25,       // Primera vez que abres cualquier asteroide
+  FIRST_TIME_QUIZ_QUESTION: 75,  // Primera vez que respondes correctamente una pregunta del quiz
+  COMPLETE_QUIZ: 200,             // Completar todo el quiz por primera vez
+  REPEAT_QUIZ: 50,                // Repetir el quiz (menor XP)
+} as const;
+
+// ID único para todos los asteroides
+export const ASTEROID_ID = "asteroid-discovery";
+
+export const LEVEL_SYSTEM = {
+  BASE_XP_PER_LEVEL: 100,         // XP base necesaria para el primer nivel
+  XP_MULTIPLIER: 1.5,             // Multiplicador para cada nivel (1.5x más XP cada nivel)
+  MAX_LEVEL: 50,                  // Nivel máximo
+} as const;
+
+// Función para calcular XP necesaria para un nivel específico
+export const getXPRequiredForLevel = (level: number): number => {
+  if (level <= 1) return 0;
+  return Math.floor(LEVEL_SYSTEM.BASE_XP_PER_LEVEL * Math.pow(LEVEL_SYSTEM.XP_MULTIPLIER, level - 2));
+};
+
+// Función para calcular XP total necesaria hasta un nivel
+export const getTotalXPForLevel = (level: number): number => {
+  let totalXP = 0;
+  for (let i = 2; i <= level; i++) {
+    totalXP += getXPRequiredForLevel(i);
+  }
+  return totalXP;
+};
+
+// Función para calcular el nivel basado en XP total
+export const getLevelFromXP = (totalXP: number): { level: number; currentLevelXP: number; xpForNextLevel: number } => {
+  let level = 1;
+  let accumulatedXP = 0;
+
+  while (level < LEVEL_SYSTEM.MAX_LEVEL) {
+    const xpNeededForNextLevel = getXPRequiredForLevel(level + 1);
+    if (accumulatedXP + xpNeededForNextLevel > totalXP) {
+      break;
+    }
+    accumulatedXP += xpNeededForNextLevel;
+    level++;
+  }
+
+  const currentLevelXP = totalXP - accumulatedXP;
+  const xpForNextLevel = getXPRequiredForLevel(level + 1);
+
+  return { level, currentLevelXP, xpForNextLevel };
+};
+
+export type ExperienceData = {
+  totalXP: number;
+  visitedEarthPoints: Set<string>;  // IDs de puntos de la Tierra visitados
+  visitedAsteroids: Set<string>;    // IDs de tipos de asteroides visitados (ahora usa Set con IDs)
+  completedQuizQuestions: Set<number>;
+  quizCompletedCount: number;
+};
+
+export const DEFAULT_EXPERIENCE_DATA: ExperienceData = {
+  totalXP: 0,
+  visitedEarthPoints: new Set(),
+  visitedAsteroids: new Set(),
+  completedQuizQuestions: new Set(),
+  quizCompletedCount: 0,
+};

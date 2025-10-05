@@ -1,5 +1,6 @@
 // src/constants/Info_maps.ts
 export type PointInfo = {
+  id: string;                // ID único para cada punto
   name: string;
   lat: number;
   lng: number;
@@ -16,9 +17,9 @@ export type PointInfo = {
   gallery?: string[];
 };
 
-
 export const PLANET_POINTS: PointInfo[] = [
 {
+  id: "atacama-radio-telescopes",
   name: "Radio Telescopes (Atacama, Chile)",
   lat: -23.029,
   lng: -67.755,
@@ -37,6 +38,7 @@ export const PLANET_POINTS: PointInfo[] = [
   source: "ALMA Observatory, NASA – Radio Astronomy"
 },
 {
+  id: "kennedy-space-center",
   name: "Florida, USA",
   lat: 27.9944,
   lng: -81.7603,
@@ -56,6 +58,7 @@ export const PLANET_POINTS: PointInfo[] = [
   sourceUrl: "https://www.nasa.gov/centers/kennedy/home/index.html"
 },
 {
+  id: "baikonur-cosmodrome",
   name: "Baikonur, Kazakhstan",
   lat: 45.9206,
   lng: 63.3422,
@@ -74,6 +77,7 @@ export const PLANET_POINTS: PointInfo[] = [
   sourceUrl: "https://en.wikipedia.org/wiki/Low_Earth_orbit"
 },
 {
+  id: "kourou-space-centre",
   name: "Kourou, French Guiana",
   lat: 5.236,
   lng: -52.776,
@@ -85,12 +89,13 @@ export const PLANET_POINTS: PointInfo[] = [
     "The Earth rotates from west to east, giving an extra speed of up to 460 m/s at the equator.",
     "Rockets require less fuel to reach orbital velocity.",
     "It allows carrying heavier payloads and increases efficiency.",
-    "That’s why many space centers are located at low latitudes."
+    "That's why many space centers are located at low latitudes."
   ],
   source: "Wikipedia – Guiana Space Centre",
   sourceUrl: "https://en.wikipedia.org/wiki/Guiana_Space_Centre?utm_source=chatgpt.com"
 },
 {
+  id: "houston-mission-control",
   name: "Microgravity and NBL (Houston, USA)",
   lat: 29.5502,
   lng: -95.097,
@@ -109,6 +114,7 @@ export const PLANET_POINTS: PointInfo[] = [
   sourceUrl: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory/?utm_source=chatgpt.com"
 },
 {
+  id: "hiroshima-bomb",
   name: "The Hiroshima Bomb",
   lat: 34.3853,
   lng: 132.4553,

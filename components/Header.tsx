@@ -1,9 +1,16 @@
 import { type FC, useState } from "react";
 import { Astronaut } from "./Astronaut";
 import { TeamModal } from "./TeamModal";
+import { useExperienceContext } from "../contexts/ExperienceProvider";
 
 export const Header: FC = () => {
   const [showTeam, setShowTeam] = useState(false);
+  const { levelInfo, resetExperience, experienceData } = useExperienceContext();
+
+  // Calcular el porcentaje de progreso hacia el siguiente nivel
+  const progressPercentage = levelInfo.xpForNextLevel > 0
+    ? (levelInfo.currentLevelXP / levelInfo.xpForNextLevel) * 100
+    : 100;
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 h-16">
@@ -31,12 +38,30 @@ export const Header: FC = () => {
         <div className="w-[120px] h-3 bg-white/20 rounded-full overflow-hidden shadow-inner border border-white">
           <div
             className="h-full bg-white transition-all duration-300"
-            style={{ width: "70%" }}
+            style={{ width: `${Math.min(progressPercentage, 100)}%` }}
           ></div>
         </div>
 
-        {/* Texto de nivel opcional */}
-        <span className="text-white font-bold text-sm">Lv. 7</span>
+        {/* Texto de nivel con tooltip */}
+        <div className="relative group">
+          <span className="text-white font-bold text-sm cursor-help">
+            Lv. {levelInfo.level}
+          </span>
+
+          {/* Tooltip con información detallada */}
+          <div className="absolute top-full right-0 mt-2 hidden group-hover:block z-50">
+            <div className="bg-gray-800 text-white text-xs rounded py-2 px-3 whitespace-nowrap shadow-lg border border-gray-600">
+              <div>Level {levelInfo.level}</div>
+              <div>{levelInfo.currentLevelXP} / {levelInfo.xpForNextLevel} XP</div>
+              <div className="text-gray-300">Total XP: {experienceData.totalXP}</div>
+              {levelInfo.xpForNextLevel > 0 && (
+                <div className="text-gray-300">
+                  {levelInfo.xpForNextLevel - levelInfo.currentLevelXP} XP to next level
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Modal del equipo */}

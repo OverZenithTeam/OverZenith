@@ -1,8 +1,9 @@
-// src/components/GlobeView.tsx
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import Globe from "react-globe.gl";
 import * as THREE from "three";
 import { PLANET_POINTS,PointInfo } from "./Info_maps";
+import { useExperienceContext } from "../contexts/ExperienceProvider";
+import { useXPContext } from "../contexts/XPContext";
 
 type GlobeRef = any;
 
@@ -109,6 +110,8 @@ function Modal({
 
 export default function GlobeView() {
   const globeRef = useRef<GlobeRef>(null);
+  const { showXPGain } = useXPContext();
+  const { visitEarthPoint } = useExperienceContext();
   const [selected, setSelected] = useState<
     | { type: "point"; data: PointItem }
     | { type: "custom"; data: CustomItem }
@@ -168,21 +171,25 @@ export default function GlobeView() {
         pointLng="lng"
         pointAltitude={() => 0.01}
         pointRadius={0.5}
-        pointLabel={(d: PointItem) =>
-          `${d.name}\n(${d.lat.toFixed(2)}, ${d.lng.toFixed(2)})`
+        pointLabel={(d: any) =>
+          `${(d as PointItem).name}\n(${(d as PointItem).lat.toFixed(2)}, ${(d as PointItem).lng.toFixed(2)})`
         }
         pointsMerge={false}
-        onPointHover={(p: PointItem | null) => setCanvasCursor(p ? "pointer" : "grab")}
-        onPointClick={(p: PointItem, _event: MouseEvent) => {
-          setSelected({ type: "point", data: p });
+        onPointHover={(p: any) => setCanvasCursor(p ? "pointer" : "grab")}
+        onPointClick={(p: any, _event: MouseEvent) => {
+          const pointData = p as PointItem;
+          // Ganar XP la primera vez que se visita este punto usando su ID único
+          visitEarthPoint(pointData.id);
+          setSelected({ type: "point", data: pointData });
         }}
         customLayerData={customLayer}
-        customThreeObject={(d: CustomItem) => {
-          const mesh = createCustomMarker(d.color);
-          mesh.userData = { lat: d.lat, lng: d.lng, alt: d.alt, name: d.name, color: d.color };
+        customThreeObject={(d: any) => {
+          const customData = d as CustomItem;
+          const mesh = createCustomMarker(customData.color);
+          mesh.userData = { lat: customData.lat, lng: customData.lng, alt: customData.alt, name: customData.name, color: customData.color };
           return mesh;
         }}
-        customThreeObjectUpdate={(obj: any, _d: CustomItem, globeRadius?: number) => {
+        customThreeObjectUpdate={(obj: any, _d: any, globeRadius?: number) => {
           const r = globeRadius ?? globeRef.current?.getGlobeRadius?.() ?? 100;
           const { lat, lng, alt } = obj.userData as CustomItem;
           const { x, y, z } = latLngToXYZ(lat, lng, r * (1 + alt));

@@ -1,4 +1,5 @@
 import { type FC, useState, useEffect } from "react";
+import { useExperienceContext } from "../contexts/ExperienceProvider";
 
 interface QuizState {
   step: number;
@@ -12,15 +13,18 @@ interface Props {
   onClose: () => void;
   savedState?: QuizState;
   onSaveState: (state: QuizState) => void;
+  onXPGain?: (amount: number, reason: string) => void;
 }
 
-export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState }) => {
+export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState, onXPGain }) => {
   const [step, setStep] = useState(savedState?.step || 1);
   const [selected, setSelected] = useState<string | null>(savedState?.selected || null);
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [failed, setFailed] = useState(savedState?.failed || false);
   const [answers, setAnswers] = useState<{ [key: number]: string }>(savedState?.answers || {});
   const [completed, setCompleted] = useState(savedState?.completed || false);
+
+  const { answerQuizQuestion, completeQuiz, hasAnsweredQuestion, hasCompletedQuiz } = useExperienceContext();
 
   // Guardar estado cuando cambie
   useEffect(() => {
@@ -63,12 +67,17 @@ export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState }) => {
     setAnswers(prev => ({ ...prev, [step]: answer }));
 
     if (answer === currentQuestion.correct) {
+      // El hook ya maneja internamente si es la primera vez o no
+      answerQuizQuestion(step - 1);
+
       setTimeout(() => {
         if (step < quiz.length) {
           setStep(step + 1);
           setSelected(null);
         } else {
           setCompleted(true);
+          // Ganar XP por completar el quiz
+          completeQuiz();
           setShowLevelUp(true);
         }
       }, 600);

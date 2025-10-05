@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useExperienceContext } from "../contexts/ExperienceProvider";
+import { useXPContext } from "../contexts/XPContext";
 
 type Bounds = {
   width: number;
@@ -37,14 +39,16 @@ export const Asteroide: React.FC<Props> = ({
   src = "images/asteoride.png",
   infoText = "Small asteroids and meteoroids constantly enter Earth's atmosphere, but most burn up before reaching the ground, protecting us from larger impacts.",
 }) => {
+  const { showXPGain } = useXPContext();
+  const { visitAsteroid, hasVisitedAnyAsteroid } = useExperienceContext();
+  const [showModal, setShowModal] = useState(false);
+
   const prefersReduced = useMemo(
     () => window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     []
   );
   const boundsRef = useRef<Bounds>({ width: window.innerWidth, height: window.innerHeight });
   const resizeId = useRef<number | null>(null);
-
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const onResize = () => {
@@ -129,14 +133,18 @@ export const Asteroide: React.FC<Props> = ({
     };
   }, [prefersReduced, rotate, sizePx, onBounce]);
 
+  const handleClick = () => {
+    // El hook ya maneja internamente si es la primera vez o no
+    visitAsteroid();
+    setShowModal(true);
+  };
+
   const baseStyle: React.CSSProperties = {
-    position: "fixed",
+    position: "absolute",
     left: 0,
     top: 0,
-    width: sizePx,
-    height: sizePx,
-    pointerEvents: "auto", // 👈 ahora sí recibe clicks
-    willChange: "transform",
+    width: `${sizePx}px`,
+    height: `${sizePx}px`,
     zIndex,
     cursor: "pointer",
     transform: `translate3d(${x.current}px, ${y.current}px, 0) rotate(${rot.current}deg)`,
@@ -148,7 +156,7 @@ export const Asteroide: React.FC<Props> = ({
         ref={elRef}
         style={baseStyle}
         aria-hidden
-        onClick={() => setShowModal(true)}
+        onClick={handleClick}
       >
         <img
           src={src}
