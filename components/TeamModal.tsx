@@ -29,7 +29,7 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
     {
       name: "Alejandro Gomez",
       github: "https://github.com/alejogogi",
-      img: "/images/team/alejandro.png",
+      img: "/images/team/alejo.png",
     },
     {
       name: "Daniel Castillo",
@@ -47,7 +47,7 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
       >
         {/* Título */}
         <h2 className="text-2xl font-extrabold text-white text-center font-mono">
-          👨‍🚀 Nuestro Equipo
+          👨‍🚀 Our Team
         </h2>
 
         {/* Grid de miembros */}
@@ -55,7 +55,7 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
           {team.map((member) => (
             <div
               key={member.name}
-              className="relative w-[160px] h-[230px] bg-[#1e293b] flex flex-col items-center justify-end p-3 gap-2 rounded-lg cursor-pointer overflow-hidden group transition-transform duration-500 hover:scale-105"
+              className="relative w-[160px] h-[190px] bg-[#1e293b] flex flex-col items-center justify-center gap-3 rounded-lg cursor-pointer overflow-hidden group transition-transform duration-500 hover:scale-105"
             >
               {/* Glow animado de borde */}
               <div className="absolute inset-0 -z-10 rounded-lg border-[2px] border-transparent bg-gradient-to-tr from-[#e81cff] via-[#1e293b] to-[#fc00ff] p-[1.5px]">
@@ -69,7 +69,7 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
               <img
                 src={member.img}
                 alt={member.name}
-                className="w-20 h-20 object-cover rounded-full mb-2 border-2 border-[#1e293b] shadow-lg group-hover:scale-110 transition-transform duration-300"
+                className="w-20 h-20 object-cover rounded-full border-2 border-[#1e293b] shadow-lg group-hover:scale-110 transition-transform duration-300"
               />
 
               {/* Nombre */}
@@ -95,7 +95,7 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
           onClick={onClose}
           className="mt-2 px-5 py-2 bg-[#1e293b] text-white font-bold rounded-lg hover:bg-[#475569] transition"
         >
-          Cerrar
+          Close
         </button>
       </div>
     </div>
