@@ -110,7 +110,7 @@ export const ASTRONAUT_SKINS: AstronautSkin[] = [
   {
     id: "España",
     name: "Spanish Astronaut",
-    image: astronautVenezuela
+    image: astronautEspana
   },
   {
     id: "Venezuela",
