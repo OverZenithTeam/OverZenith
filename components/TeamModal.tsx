@@ -1,4 +1,10 @@
 import { type FC } from "react";
+import gafreire from "../images/team/gabriel.png";
+import loreeue from "../images/team/loreto.png";
+import claauugil from "../images/team/claudia.png";
+import angelurano from "../images/team/angel.png";
+import alejogogi from "../images/team/alejo.png";
+import danielcasti11o from "../images/team/daniel.png";
 
 interface Props {
   onClose: () => void;
@@ -9,32 +15,32 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
     {
       name: "Gabriel Freire",
       github: "https://github.com/ByteGab",
-      img: "/images/team/gabriel.png",
+      img: gafreire,
     },
     {
       name: "Loreto Uzquiano",
       github: "https://github.com/loreeue",
-      img: "/images/team/loreto.png",
+      img: loreeue,
     },
     {
       name: "Claudia Gil",
       github: "https://github.com/claauugil",
-      img: "/images/team/claudia.png",
+      img: claauugil,
     },
     {
       name: "Angel Urano",
       github: "https://github.com/angelurano",
-      img: "/images/team/angel.png",
+      img: angelurano,
     },
     {
       name: "Alejandro Gomez",
       github: "https://github.com/alejogogi",
-      img: "/images/team/alejo.png",
+      img: alejogogi,
     },
     {
       name: "Daniel Castillo",
       github: "https://github.com/DanielCasti11o",
-      img: "/images/team/daniel.png",
+      img: danielcasti11o,
     },
   ];
 
@@ -64,14 +70,14 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
               <div className="absolute inset-0 -z-10 rounded-lg border-[2px] border-transparent bg-gradient-to-tr from-[#e81cff] via-[#1e293b] to-[#fc00ff] p-[1.5px]">
                 <div className="absolute inset-0 rounded-lg" style={{ backgroundColor: "#1e293b" }} />
               </div>
-                    
+
               {/* Image */}
               <img
                 src={member.img}
                 alt={member.name}
                 className="w-20 h-20 object-cover rounded-full border-2 border-[#1e293b] shadow-lg group-hover:scale-110 transition-transform duration-300"
               />
-          
+
               {/* Name */}
               <p className="text-sm font-bold text-white text-center leading-tight">
                 {member.name}

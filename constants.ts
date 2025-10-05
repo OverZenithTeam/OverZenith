@@ -1,5 +1,10 @@
-
 import type { Planet, Question, AstronautSkin, Skin } from './types/types';
+import astronautDefault from './images/astronaut.png';
+import astronautCat from './images/cat.png';
+import astronautColombia from './images/colombia.png';
+import astronautEspana from './images/españa.png';
+import astronautVenezuela from './images/venezuela.png';
+import astronaut42 from './images/astro42.png';
 
 export const PLANET_DATA: Planet[] = [
   {
@@ -95,32 +100,32 @@ export const ASTRONAUT_SKINS: AstronautSkin[] = [
   {
     id: "Default",
     name: "Default Astronaut",
-    image: "./images/astronaut.png"
+    image: astronautDefault
   },
   {
     id: "Colombia",
     name: "Colombian Astronaut",
-    image: "./images/colombia.png"
+    image: astronautColombia
   },
   {
     id: "España",
     name: "Spanish Astronaut",
-    image: "./images/españa.png"
+    image: astronautVenezuela
   },
   {
     id: "Venezuela",
     name: "Venezuelan Astronaut",
-    image: "./images/venezuela.png"
+    image: astronautVenezuela
   },
   {
     id: "42",
     name: "42 School Astronaut",
-    image: "./images/astro42.png"
+    image: astronaut42
   },
   {
     id: "Cat",
     name: "Cat Astronaut",
-    image: "./images/cat.png"
+    image: astronautCat
   }
 ];
 

@@ -2,6 +2,8 @@ import { type FC, useState } from "react";
 import { Astronaut } from "./Astronaut";
 import { TeamModal } from "./TeamModal";
 import { useExperienceContext } from "../contexts/ExperienceProvider";
+import name from "../images/nombre.png";
+import logo from "../images/logo.png";
 
 export const Header: FC = () => {
   const [showTeam, setShowTeam] = useState(false);
@@ -20,13 +22,13 @@ export const Header: FC = () => {
           className="pointer-events-auto cursor-pointer"
           onClick={() => setShowTeam(true)}
         >
-          <img src="/images/logo.png" className="h-20 w-24" />
+          <img src={logo} className="h-20 w-24" />
         </div>
       </div>
 
       {/* Name */}
       <div className="absolute top-0 left-1/2 -translate-x-[25%] pointer-events-auto">
-        <img src="/images/nombre.png" className="h-[130px] w-auto" />
+        <img src={name} className="h-[130px] w-auto" />
       </div>
 
       {/* Container astronaut */}

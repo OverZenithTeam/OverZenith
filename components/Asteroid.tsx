@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useExperienceContext } from "../contexts/ExperienceProvider";
 import { useXPContext } from "../contexts/XPContext";
+import asteroidImg from "../images/asteoride.png";
 
 type Bounds = {
   width: number;
@@ -36,7 +37,7 @@ export const Asteroide: React.FC<Props> = ({
   rotSpeed = 0.4,
   zIndex = 1,
   onBounce,
-  src = "images/asteoride.png",
+  src = asteroidImg,
   infoText = "Small asteroids and meteoroids constantly enter Earth's atmosphere, but most burn up before reaching the ground, protecting us from larger impacts.",
 }) => {
   const { showXPGain } = useXPContext();
