@@ -234,7 +234,7 @@ export default function GlobeView() {
                 </p>
                 {selected.data.source && (
                   <p className="mt-1">
-                   <span className="font-semibold text-gray-200">Font:</span> {selected.data.source}
+                   <span className="font-semibold text-gray-200">Source:</span> {selected.data.source}
                   </p>
                 )}
               </div>

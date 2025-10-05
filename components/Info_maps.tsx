@@ -76,22 +76,23 @@ export const PLANET_POINTS: PointInfo[] = [
   sourceUrl: "https://science.nasa.gov/photojournal/baikonur-cosmodrome-kazakhstan"
 },
 {
-  id: "kennedy-space-center",
-  name: "Merritt Island, Florida, USA",
-  lat: 28.5721,
-  lng: -80.6480,
-  title: "Kennedy Space Center (NASA)",
-  sectionTitle: "How NASA uses its equatorial advantage",
+  id: "wallops-flight-facility",
+  name: "Wallops Flight Facility",
+  lat: 37.940,
+  lng: -75.466,
+  title: "Wallops Flight Facility (Virginia, USA)",
+  sectionTitle: "What is Wallops Flight Facility and what missions are launched there",
   description:
-    "The Kennedy Space Center is NASA’s primary launch site for human spaceflight, located on Florida’s east coast to take advantage of Earth’s rotation and allow safe launches over the Atlantic Ocean.",
+    "Wallops Flight Facility, operated by NASA, supports suborbital and orbital launches for science, research, and technology missions. It provides launch services for sounding rockets, balloons, aircraft, and small satellites.",
   bullets: [
-    "Florida’s proximity to the equator gives rockets a natural boost from Earth’s rotation, improving launch efficiency.",
-    "Launches are directed eastward over the Atlantic Ocean to avoid populated areas.",
-    "Home to Launch Complexes 39A and 39B, used for Apollo, Space Shuttle, and Artemis missions.",
-    "The Vehicle Assembly Building (VAB) is one of the largest buildings in the world, where rockets are assembled vertically."
+    "Used by NASA for scientific, suborbital, and small orbital launches.",
+    "Supports studies of Earth’s atmosphere, space environment, and technology development.",
+    "Launches sounding rockets and small spacecraft for rapid scientific investigations.",
+    "Hosts collaborations with universities and international partners.",
+    "Provides range and tracking support for missions launched from other sites."
   ],
-  source: "NASA – Kennedy Space Center Overview",
-  sourceUrl: "https://www.nasa.gov/kennedy"
+  source: "NASA – Wallops Flight Facility",
+  sourceUrl: "https://www.nasa.gov/centers/wallops"
 },
 {
   id: "houston-mission-control",
