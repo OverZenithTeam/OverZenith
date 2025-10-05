@@ -16,23 +16,18 @@ export const Header: FC = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 h-16">
-      {/* Logo */}
-      <div className="absolute top-[18px] left-[40px] flex items-center">
+      {/* Logo - Arriba a la izquierda */}
+      <div className="absolute top-4 left-6 flex items-center">
         <div
           className="pointer-events-auto cursor-pointer"
           onClick={() => setShowTeam(true)}
         >
-          <img src={logo} className="h-20 w-24" />
+          <img src={logo} className="h-12 w-auto" alt="Logo" />
         </div>
       </div>
 
-      {/* Name */}
-      <div className="absolute top-0 left-1/2 -translate-x-[25%] pointer-events-auto">
-        <img src={name} className="h-[130px] w-auto" />
-      </div>
-
-      {/* Container astronaut */}
-      <div className="absolute right-4 top-[20px] flex items-center gap-4 pointer-events-auto">
+      {/* Container astronaut y Level Bar - Arriba a la derecha */}
+      <div className="absolute right-4 top-4 flex items-center gap-4 pointer-events-auto">
         {/* Boton astronauta (modal) */}
         <Astronaut />
 

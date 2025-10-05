@@ -18,8 +18,8 @@ const AppContent: FC = () => {
   return (
     <div className="text-slate-800 min-h-screen w-screen font-sans bg-black">
       <Header />
-      <main className="relative w-full h-screen overflow-hidden">
-        <div className="absolute inset-0 w-full h-full">
+      <main className="fixed inset-0 w-full h-full overflow-hidden">
+        <div className="fixed inset-0 w-full h-full">
           <GlobeView />
         </div>
         <Cupola hidden={hiddenCupola} />
