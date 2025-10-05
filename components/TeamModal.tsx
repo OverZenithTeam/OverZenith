@@ -45,10 +45,10 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 font-mono">
+    <div className="fixed inset-0 bg-black/50 flex items-start sm:items-center justify-center z-50 font-mono overflow-y-auto p-4 sm:p-8">
       {/* Principal container */}
       <div
-        className="p-8 rounded-2xl shadow-xl w-full max-w-4xl flex flex-col items-center gap-8"
+         className="p-8 rounded-2xl shadow-xl w-full max-w-4xl flex flex-col items-center gap-8 max-h-[85vh] overflow-y-auto"
         style={{ backgroundColor: "#334155" }}
       >
         {/* Title */}

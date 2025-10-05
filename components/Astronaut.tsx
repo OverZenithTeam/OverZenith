@@ -71,7 +71,7 @@ export const Astronaut = () => {
 
       {isOpen && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center"
+           className="fixed inset-0 z-[60] flex items-start sm:items-center justify-center overflow-y-auto p-4 sm:p-8"
           role="dialog"
           aria-modal="true"
           aria-labelledby="astronaut-modal-title"
@@ -82,7 +82,7 @@ export const Astronaut = () => {
           />
 
 			<div
-			className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden font-mono bg-slate-800 text-white"
+			className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 font-mono bg-slate-800 text-white max-h-[85vh] overflow-y-auto"
 			onClick={(e) => e.stopPropagation()}
 			>
 
