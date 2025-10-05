@@ -48,14 +48,19 @@ export const Asteroide: React.FC<Props> = ({
     () => window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     []
   );
-  const boundsRef = useRef<Bounds>({ width: window.innerWidth, height: window.innerHeight });
+  const boundsRef = useRef<Bounds>({
+  width: window.visualViewport?.width ?? window.innerWidth,
+  height: window.visualViewport?.height ?? window.innerHeight,
+  });
   const resizeId = useRef<number | null>(null);
 
   useEffect(() => {
     const onResize = () => {
       if (resizeId.current) cancelAnimationFrame(resizeId.current);
       resizeId.current = requestAnimationFrame(() => {
-        boundsRef.current = { width: window.innerWidth, height: window.innerHeight };
+        const vw = window.visualViewport?.width ?? window.innerWidth;
+        const vh = window.visualViewport?.height ?? window.innerHeight;
+        boundsRef.current = { width: vw, height: vh };
       });
     };
     window.addEventListener("resize", onResize);
@@ -85,7 +90,6 @@ export const Asteroide: React.FC<Props> = ({
   const rafId = useRef<number | null>(null);
 
   useEffect(() => {
-    if (prefersReduced) return;
 
     const step = () => {
       const { width, height } = boundsRef.current;
@@ -132,7 +136,7 @@ export const Asteroide: React.FC<Props> = ({
     return () => {
       if (rafId.current) cancelAnimationFrame(rafId.current);
     };
-  }, [prefersReduced, rotate, sizePx, onBounce]);
+  }, [rotate, sizePx, onBounce]);
 
   const handleClick = () => {
     visitAsteroid();
@@ -148,6 +152,7 @@ export const Asteroide: React.FC<Props> = ({
     zIndex,
     cursor: "pointer",
     transform: `translate3d(${x.current}px, ${y.current}px, 0) rotate(${rot.current}deg)`,
+    willChange: "transform",
   };
 
   return (
