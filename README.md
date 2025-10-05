@@ -84,13 +84,13 @@ Our mission is to make NASA’s knowledge **accessible to everyone**, inspiring 
 
 * **[Daniel Castillo Correa](https://github.com/DanielCasti11o)** – *Software Development student at 42 Madrid, with a strong drive for continuous learning and growth in cutting-edge technologies.*
 
-* **[Gabriel Freire Simón](https://github.com/ByteGab)** – *Full-Stack Developer with a focus on scalable architectures and problem-solving, combining technical expertise with a passion for teamwork and innovation.*
+* **[Gabriel Freire Simón](https://github.com/ByteGab)** – *Full-Stack Developer and 42 Madrid student, focused on scalable architectures and problem-solving, combining technical expertise with a passion for teamwork and innovation.*
 
 * **[Claudia Gil](https://github.com/claauugil)** – *Software Development student at 42 Madrid, eager to explore new technologies and with a strong interest in creative digital solutions.*
 
 * **[Alejandro Gómez Girón](https://github.com/alejogogi)** – *Graphic Designer and Software Development student at 42 Madrid, blending technical precision with artistic vision to craft memorable digital experiences.*
 
-* **[Ángel García Beltrán](https://github.com/angelurano)** – *Full-Stack Developer focused on creating intuitive, efficient, and accessible web solutions.*
+* **[Ángel García Beltrán](https://github.com/angelurano)** – *Full-Stack Developer and 42 Madrid student,focused on creating intuitive, efficient, and accessible web solutions.*
 
 ---
 
