@@ -64,13 +64,13 @@ export const PLANET_POINTS: PointInfo[] = [
   title: "Baikonur Cosmodrome (Kazakhstan)",
   sectionTitle: "Baikonur in NASA’s Earth imagery and its role",
   description:
-    "NASA’s Terra satellite captured images of the Baikonur Cosmodrome, which is used for Russian crewed missions, geostationary, lunar, planetary and Earth-observing launches. :contentReference[oaicite:1]{index=1}",
+    "NASA’s Terra satellite captured images of the Baikonur Cosmodrome, which is used for Russian crewed missions, geostationary, lunar, planetary and Earth-observing launches.",
   bullets: [
-    "The site is used for all Russian crewed missions, per NASA imagery. :contentReference[oaicite:2]{index=2}",
-    "Baikonur supports launches of lunar, planetary, and Earth-observing missions as well. :contentReference[oaicite:3]{index=3}",
-    "It was rented by Russia from Kazakhstan and is under Russian administration. :contentReference[oaicite:4]{index=4}",
-    "The NASA image covers ~15×23 km area showing the launch complex. :contentReference[oaicite:5]{index=5}",
-    "It was originally established in the Soviet era, evolving into a major international launch site. :contentReference[oaicite:6]{index=6}"
+    "The site is used for all Russian crewed missions, per NASA imagery.",
+    "Baikonur supports launches of lunar, planetary, and Earth-observing missions as well.",
+    "It was rented by Russia from Kazakhstan and is under Russian administration.",
+    "The NASA image covers ~15×23 km area showing the launch complex.",
+    "It was originally established in the Soviet era, evolving into a major international launch site."
   ],
   source: "NASA Science / Photojournal",
   sourceUrl: "https://science.nasa.gov/photojournal/baikonur-cosmodrome-kazakhstan"
