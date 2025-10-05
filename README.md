@@ -5,6 +5,7 @@
 # 🌍 OverZenith – Bringing Space Closer to Everyone
 
 *"What if curiosity about space could turn into an everyday adventure?"*
+desing by: overzenith.
 
 **OverZenith** is our answer: an **interactive, gamified web platform** designed for the **NASA Space Apps Challenge**.
 We transform NASA’s knowledge into an engaging digital journey, making space exploration not a distant dream but a **daily tool for curiosity, learning, and connection**.
@@ -24,7 +25,7 @@ Through **gamification, interactivity, and design inspired by microgravity**, Ov
 
 ## 🌌 The Experience
 
-Inside OverZenith, users will:
+Inside OverZenith, users will.  :
 
 - 🌐 **Explore Earth in 3D** – From the **Cupola module of the ISS**, click on interactive points across the globe to unlock NASA-related insights, from astronaut training at the **Neutral Buoyancy Laboratory (NBL)** to essential space science concepts.
 - 🧑‍🚀 **Create your astronaut** – Personalize your digital explorer with a name, appearance, and skin, turning the learning process into a personal mission.
