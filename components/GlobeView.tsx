@@ -152,7 +152,7 @@ export default function GlobeView() {
   }, []);
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div className="w-full h-full min-h-screen" style={{ width: "100vw", height: "100vh" }}>
       <Globe
         ref={globeRef as any}
         enablePointerInteraction

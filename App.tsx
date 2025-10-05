@@ -15,10 +15,10 @@ const App: FC = () => {
   const [hiddenCupola, setHiddenCupola] = useState(false);
 
   return (
-    <div className="text-slate-800 min-h-screen font-sans">
+    <div className="text-slate-800 min-h-screen w-screen font-sans bg-black">
       <Header />
       <main className="relative w-full h-screen overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 w-full h-full">
           <GlobeView />
         </div>
         <Cupola hidden={hiddenCupola} />

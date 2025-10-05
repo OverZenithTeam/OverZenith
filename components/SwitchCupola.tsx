@@ -3,6 +3,13 @@ import { EyeClose } from "./Icons/EyeClose";
 import { Eye } from "./Icons/Eye";
 import { QuizModal } from "./QuizModal";
 
+interface QuizState {
+  step: number;
+  selected: string | null;
+  failed: boolean;
+  answers: { [key: number]: string };
+}
+
 interface Props {
   hidden: boolean;
   onClick: () => void;
@@ -11,6 +18,7 @@ interface Props {
 export const SwitchCupola: FC<Props> = ({ hidden, onClick }) => {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [hovered, setHovered] = useState(false); // control hover para estrellas
+  const [quizState, setQuizState] = useState<QuizState | undefined>(undefined);
 
   const stars = [
     { top: "20%", left: "20%", size: 25, hover: { top: "-80%", left: "-30%" } },
@@ -37,16 +45,15 @@ export const SwitchCupola: FC<Props> = ({ hidden, onClick }) => {
         </button>
       </div>
 
-      {/* Botón "Test Knowledge" centrado */}
-      {!hidden && (
-        <div className="absolute left-1/2 bottom-200 transform -translate-x-1/2 z-50">
-          <button
-            onClick={() => setIsQuizOpen(true)}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            className="relative px-8 py-3 font-medium text-lg text-[#181818] bg-[#fec195] border-[3px] border-[#fec195] rounded-lg shadow-[0_0_0_#fec1958c] transition-all hover:bg-transparent hover:text-[#fec195] hover:shadow-[0_0_25px_#fec1958c] transform translate-x-12 -translate-x-1/4"
-          >
-            Test Knowledge
+      {/* Botón "Test Knowledge" en la parte inferior */}
+      <div className="fixed bottom-4 left-0 right-0 flex justify-center z-40">
+        <button
+          onClick={() => setIsQuizOpen(true)}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          className="relative px-8 py-3 font-medium text-lg text-[#181818] bg-[#fec195] border-[3px] border-[#fec195] rounded-lg shadow-[0_0_0_#fec1958c] transition-all hover:bg-transparent hover:text-[#fec195] hover:shadow-[0_0_25px_#fec1958c]"
+        >
+          Test Knowledge
 
             {/* Estrellas animadas */}
             {stars.map((star, idx) => (
@@ -70,10 +77,15 @@ export const SwitchCupola: FC<Props> = ({ hidden, onClick }) => {
             ))}
           </button>
         </div>
-      )}
 
       {/* Ventana Quiz */}
-      {isQuizOpen && <QuizModal onClose={() => setIsQuizOpen(false)} />}
+      {isQuizOpen && (
+        <QuizModal
+          onClose={() => setIsQuizOpen(false)}
+          savedState={quizState}
+          onSaveState={setQuizState}
+        />
+      )}
     </>
   );
 };

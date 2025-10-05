@@ -1,14 +1,38 @@
-import { type FC, useState } from "react";
+import { type FC, useState, useEffect } from "react";
+
+interface QuizState {
+  step: number;
+  selected: string | null;
+  failed: boolean;
+  answers: { [key: number]: string };
+  completed: boolean;
+}
 
 interface Props {
   onClose: () => void;
+  savedState?: QuizState;
+  onSaveState: (state: QuizState) => void;
 }
 
-export const QuizModal: FC<Props> = ({ onClose }) => {
-  const [step, setStep] = useState(1);
-  const [selected, setSelected] = useState<string | null>(null);
+export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState }) => {
+  const [step, setStep] = useState(savedState?.step || 1);
+  const [selected, setSelected] = useState<string | null>(savedState?.selected || null);
   const [showLevelUp, setShowLevelUp] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const [failed, setFailed] = useState(savedState?.failed || false);
+  const [answers, setAnswers] = useState<{ [key: number]: string }>(savedState?.answers || {});
+  const [completed, setCompleted] = useState(savedState?.completed || false);
+
+  // Guardar estado cuando cambie
+  useEffect(() => {
+    onSaveState({ step, selected, failed, answers, completed });
+  }, [step, selected, failed, answers, completed, onSaveState]);
+
+  // Mostrar pantalla de felicitaciones si ya completó el quiz
+  useEffect(() => {
+    if (completed) {
+      setShowLevelUp(true);
+    }
+  }, [completed]);
 
   const quiz = [
     {
@@ -36,6 +60,7 @@ export const QuizModal: FC<Props> = ({ onClose }) => {
 
   const handleSelect = (answer: string) => {
     setSelected(answer);
+    setAnswers(prev => ({ ...prev, [step]: answer }));
 
     if (answer === currentQuestion.correct) {
       setTimeout(() => {
@@ -43,6 +68,7 @@ export const QuizModal: FC<Props> = ({ onClose }) => {
           setStep(step + 1);
           setSelected(null);
         } else {
+          setCompleted(true);
           setShowLevelUp(true);
         }
       }, 600);
@@ -55,6 +81,9 @@ export const QuizModal: FC<Props> = ({ onClose }) => {
     setStep(1);
     setSelected(null);
     setFailed(false);
+    setAnswers({});
+    setCompleted(false);
+    setShowLevelUp(false);
   };
 
   const handleCloseLevelUp = () => {
@@ -67,30 +96,38 @@ export const QuizModal: FC<Props> = ({ onClose }) => {
       {/* Modal del quiz */}
       {!showLevelUp && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-50">
-          <div className="bg-gray-300 p-6 w-80 rounded-lg shadow-[4px_4px_#323232] flex flex-col items-start gap-4">
-            <h2 className="font-bold text-2xl text-[#323232] mb-3">🚀 Space Quiz</h2>
+          <div className="bg-gray-300 p-6 w-96 max-w-md rounded-lg shadow-[4px_4px_#323232] flex flex-col items-start gap-4 relative">
+            {/* Botón X para cerrar */}
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded border-2 border-[#323232] shadow-[2px_2px_#323232] bg-white text-[#323232] font-bold hover:bg-gray-200 transition text-sm"
+              aria-label="Cerrar quiz"
+            >
+              ✕
+            </button>
+
+            <h2 className="font-bold text-2xl text-[#323232] mb-3 pr-10">🚀 Space Quiz</h2>
             <p className="text-[#666]">{currentQuestion.question}</p>
 
-            <ul className="w-full flex flex-col gap-2">
+            <div className="w-full grid gap-3">
               {currentQuestion.options.map((answer) => (
-                <li key={answer}>
-                  <button
-                    onClick={() => handleSelect(answer)}
-                    disabled={failed}
-                    className={`w-full p-2 rounded border-2 border-[#323232] shadow-[4px_4px_#323232] text-[#323232] font-semibold transition
-                      ${
-                        selected === answer
-                          ? answer === currentQuestion.correct
-                            ? "bg-green-500 text-white"
-                            : "bg-red-500 text-white"
-                          : "bg-white hover:bg-gray-200"
-                      } ${failed ? "opacity-50 cursor-not-allowed" : ""}`}
-                  >
-                    {answer}
-                  </button>
-                </li>
+                <button
+                  key={answer}
+                  onClick={() => handleSelect(answer)}
+                  disabled={failed}
+                  className={`w-full p-3 rounded border-2 border-[#323232] shadow-[4px_4px_#323232] text-[#323232] font-semibold transition
+                    ${
+                      selected === answer
+                        ? answer === currentQuestion.correct
+                          ? "bg-green-500 text-white"
+                          : "bg-red-500 text-white"
+                        : "bg-white hover:bg-gray-200"
+                    } ${failed ? "opacity-50 cursor-not-allowed" : ""}`}
+                >
+                  {answer}
+                </button>
               ))}
-            </ul>
+            </div>
 
             {failed && (
               <button
@@ -107,15 +144,32 @@ export const QuizModal: FC<Props> = ({ onClose }) => {
       {/* Modal Level Up */}
       {showLevelUp && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-50">
-          <div className="bg-gray-300 p-6 w-80 rounded-lg shadow-[4px_4px_#323232] flex flex-col items-center gap-4">
-            <h2 className="font-bold text-2xl text-[#323232]">🎉 Congratulations!</h2>
-            <p className="text-[#666]">You've leveled up! 🚀</p>
+          <div className="bg-gray-300 p-6 w-96 max-w-md rounded-lg shadow-[4px_4px_#323232] flex flex-col items-center gap-4 relative">
+            {/* Botón X para cerrar */}
             <button
-              onClick={handleCloseLevelUp}
-              className="mt-2 w-full py-2 rounded border-2 border-[#323232] shadow-[4px_4px_#323232] bg-green-500 text-white font-semibold hover:bg-green-600"
+              onClick={onClose}
+              className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded border-2 border-[#323232] shadow-[2px_2px_#323232] bg-white text-[#323232] font-bold hover:bg-gray-200 transition text-sm"
+              aria-label="Cerrar"
             >
-              Close
+              ✕
             </button>
+
+            <h2 className="font-bold text-2xl text-[#323232] pr-10">🎉 Congratulations!</h2>
+            <p className="text-[#666] text-center">You've leveled up! 🚀</p>
+            <div className="flex flex-col gap-3 w-full">
+              <button
+                onClick={handleCloseLevelUp}
+                className="w-full py-3 rounded border-2 border-[#323232] shadow-[4px_4px_#323232] bg-green-500 text-white font-semibold hover:bg-green-600"
+              >
+                Close
+              </button>
+              <button
+                onClick={handleRestartQuiz}
+                className="w-full py-3 rounded border-2 border-[#323232] shadow-[4px_4px_#323232] bg-yellow-400 text-[#323232] font-semibold hover:bg-yellow-500"
+              >
+                Take Quiz Again
+              </button>
+            </div>
           </div>
         </div>
       )}
