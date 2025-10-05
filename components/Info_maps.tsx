@@ -131,7 +131,8 @@ export const PLANET_POINTS: PointInfo[] = [
   lng: -16.5105556,
   title: "Teide Observatory (Tenerife, Canary Islands)",
   bullets: [
-    "In this observatory where Helioseismology was born in 1979"
+    "Astrophysics in the Canary Islands began in the early 1960s at this Observatory, located in Izaña (Tenerife), at an altitude of 2,390 m, in an area where the municipalities of La Orotava, Fasnia, and Güímar converge.",
+	"Its first telescope, installed by the University of Bordeaux, started operating in 1964, and with it, pioneering studies of zodiacal light —the light scattered by interplanetary matter— were carried out. Its geographical location (between the solar observatories of the East and West), together with the transparency and excellent astronomical quality of its sky, has contributed to the Teide Observatory being primarily dedicated to the study of the Sun. For this reason, it houses the best European solar telescopes, such as GREGOR, with a diameter of 1.5 m. It was also precisely at this observatory where Helioseismology was born in 1979, a technique that makes it possible to study the interior of our star through its vibrations."
   ]
 },
 {
@@ -141,7 +142,12 @@ export const PLANET_POINTS: PointInfo[] = [
   lng: -4.24905,
   title: "Emirates Mars Mission (Hope)",
   bullets: [
-    "search for the connection between the current Martian climate and the ancient climate of Mars."
+    "The Emirates Mars Mission, or the Mars 'Hope' Orbiter Mission, was launched from the Tanegashima Space Center at 21:58:14 UT on July 19, 2020.",
+	 "Built by the United Arab Emirates, the mission will orbit Mars and study the dynamics of the Martian atmosphere and its interaction with outer space and the solar wind. The main scientific objectives are:",
+	 "> To explore the connection between the current Martian climate and the ancient climate of Mars.",
+	 "> To study the mechanisms of atmospheric loss on Mars by tracking the behavior and escape of hydrogen and oxygen.",
+	 "> To investigate how the lower and upper levels of the Martian atmosphere are connected.",
+	 "> To create a global picture of how the Martian atmosphere varies throughout the day and year."
   ]
 },
 {
@@ -151,7 +157,8 @@ export const PLANET_POINTS: PointInfo[] = [
   lng: -2.54611100,
   title: "Calar Alto Observatory, Andalucía",
   bullets: [
-    "The Spanish Astronomical Center in Andalusia (CAHA), also known as the Calar Alto Observatory, is the largest astronomical observatory in Europe."
+    "The Hispano-German Astronomical Center in Andalusia (CAHA), also known as the Calar Alto Observatory, is the largest astronomical observatory in continental Europe, located on Calar Alto, a plateau at 2,168 meters above sea level in the Sierra de Filabres, in the province of Almería, Spain.",
+	"Founded in 1973 following an agreement between the German and Spanish governments, the observatory has five telescopes with different apertures and optical systems, the largest being the 3.5-meter telescope, the biggest in continental Europe."
   ]
 }
 ];
