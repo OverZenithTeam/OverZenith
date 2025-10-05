@@ -40,24 +40,24 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 font-mono">
-      {/* Contenedor principal */}
+      {/* Principal container */}
       <div
         className="p-8 rounded-2xl shadow-xl w-full max-w-4xl flex flex-col items-center gap-8"
         style={{ backgroundColor: "#334155" }}
       >
-        {/* Título */}
+        {/* Title */}
         <h2 className="text-2xl font-extrabold text-white text-center font-mono">
           👨‍🚀 Our Team
         </h2>
 
-        {/* Grid de miembros */}
+        {/* Grid of members */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
           {team.map((member) => (
             <div
               key={member.name}
               className="relative w-[160px] h-[190px] bg-[#1e293b] flex flex-col items-center justify-center gap-3 rounded-lg cursor-pointer overflow-hidden group transition-transform duration-500 hover:scale-105"
             >
-              {/* Glow animado de borde */}
+              {/* Animated border glow */}
               <div className="absolute inset-0 -z-10 rounded-lg border-[2px] border-transparent bg-gradient-to-tr from-[#e81cff] via-[#1e293b] to-[#fc00ff] p-[1.5px]">
                 <div
                   className="absolute inset-0 rounded-lg"
@@ -65,14 +65,14 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
                 />
               </div>
 
-              {/* Imagen */}
+              {/* Image */}
               <img
                 src={member.img}
                 alt={member.name}
                 className="w-20 h-20 object-cover rounded-full border-2 border-[#1e293b] shadow-lg group-hover:scale-110 transition-transform duration-300"
               />
 
-              {/* Nombre */}
+              {/* Name */}
               <p className="text-sm font-bold text-white text-center leading-tight">
                 {member.name}
               </p>
@@ -90,7 +90,7 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
           ))}
         </div>
 
-        {/* Botón de cierre */}
+        {/* Close button */}
         <button
           onClick={onClose}
           className="mt-2 px-5 py-2 bg-[#1e293b] text-white font-bold rounded-lg hover:bg-[#475569] transition"

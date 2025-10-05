@@ -19,7 +19,7 @@ interface Props {
 
 export const SwitchCupola: FC<Props> = ({ hidden, onClick, onXPGain }) => {
   const [isQuizOpen, setIsQuizOpen] = useState(false);
-  const [hovered, setHovered] = useState(false); // control hover para estrellas
+  const [hovered, setHovered] = useState(false); // control hover for stars
   const [quizState, setQuizState] = useState<QuizState | undefined>(undefined);
 
   const stars = [
@@ -33,7 +33,7 @@ export const SwitchCupola: FC<Props> = ({ hidden, onClick, onXPGain }) => {
 
   return (
     <>
-      {/* Botón del ojo */}
+      {/* Eye button */}
       <div className="absolute bottom-4 right-4 z-50">
         <button
           className="p-2 rounded-full bg-black/50 hover:bg-black/70 transition"
@@ -47,7 +47,7 @@ export const SwitchCupola: FC<Props> = ({ hidden, onClick, onXPGain }) => {
         </button>
       </div>
 
-      {/* Botón "Test Knowledge" en la parte inferior */}
+      {/* "Test Knowledge" button at the bottom */}
       <div className="fixed bottom-4 left-0 right-0 flex justify-center z-40 font-mono">
         <button
 			onClick={() => setIsQuizOpen(true)}
@@ -57,7 +57,7 @@ export const SwitchCupola: FC<Props> = ({ hidden, onClick, onXPGain }) => {
 		>
           Test Knowledge
 
-            {/* Estrellas animadas */}
+            {/* Animated stars */}
             {stars.map((star, idx) => (
               <div
                 key={idx}
@@ -80,7 +80,7 @@ export const SwitchCupola: FC<Props> = ({ hidden, onClick, onXPGain }) => {
           </button>
         </div>
 
-      {/* Ventana Quiz */}
+      {/* Quiz Window */}
       {isQuizOpen && (
         <QuizModal
           onClose={() => setIsQuizOpen(false)}

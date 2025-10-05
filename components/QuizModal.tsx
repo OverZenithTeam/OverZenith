@@ -26,12 +26,12 @@ export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState, onXPGai
 
   const { answerQuizQuestion, completeQuiz, hasAnsweredQuestion, hasCompletedQuiz } = useExperienceContext();
 
-  // Guardar estado cuando cambie
+  // Save state on changes
   useEffect(() => {
     onSaveState({ step, selected, failed, answers, completed });
   }, [step, selected, failed, answers, completed, onSaveState]);
 
-  // Mostrar pantalla de felicitaciones si ya completó el quiz
+  // Show congratulations screen if quiz is completed
   useEffect(() => {
     if (completed) {
       setShowLevelUp(true);
@@ -67,7 +67,7 @@ export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState, onXPGai
     setAnswers(prev => ({ ...prev, [step]: answer }));
 
     if (answer === currentQuestion.correct) {
-      // El hook ya maneja internamente si es la primera vez o no
+      // The hook already handles whether it's the first time or not
       answerQuizQuestion(step - 1);
 
       setTimeout(() => {
@@ -76,7 +76,7 @@ export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState, onXPGai
           setSelected(null);
         } else {
           setCompleted(true);
-          // Ganar XP por completar el quiz
+          // Gain XP for completing the quiz
           completeQuiz();
           setShowLevelUp(true);
         }
@@ -102,15 +102,15 @@ export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState, onXPGai
 
   return (
     <>
-      {/* Modal del quiz */}
+      {/* Quiz Modal */}
       {!showLevelUp && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-50">
           <div className="bg-gray-300 p-6 w-96 max-w-md rounded-lg shadow-[4px_4px_#323232] flex flex-col items-start gap-4 relative">
-            {/* Botón X para cerrar */}
+            {/* Close button */}
             <button
               onClick={onClose}
               className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded border-2 border-[#323232] shadow-[2px_2px_#323232] bg-white text-[#323232] font-bold hover:bg-gray-200 transition text-sm"
-              aria-label="Cerrar quiz"
+              aria-label="Close quiz"
             >
               ✕
             </button>
@@ -154,11 +154,11 @@ export const QuizModal: FC<Props> = ({ onClose, savedState, onSaveState, onXPGai
       {showLevelUp && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-50">
           <div className="bg-gray-300 p-6 w-96 max-w-md rounded-lg shadow-[4px_4px_#323232] flex flex-col items-center gap-4 relative">
-            {/* Botón X para cerrar */}
+            {/* Close button */}
             <button
               onClick={onClose}
               className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded border-2 border-[#323232] shadow-[2px_2px_#323232] bg-white text-[#323232] font-bold hover:bg-gray-200 transition text-sm"
-              aria-label="Cerrar"
+              aria-label="Close"
             >
               ✕
             </button>

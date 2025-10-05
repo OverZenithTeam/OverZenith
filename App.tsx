@@ -1,7 +1,5 @@
 import { type FC, useState } from 'react';
 import { Header } from './components/Header';
-import { Quiz } from './components/Quiz';
-import { Footer } from './components/Footer';
 import { PLANET_DATA, QUIZ_QUESTIONS } from './constants';
 import GlobeView from "./components/GlobeView";
 import Cupola from './components/Cupola';
@@ -34,9 +32,6 @@ const AppContent: FC = () => {
                     <Asteroid key={i} size={[30, 100]} speed={0.4 + Math.random() * 0.3} zIndex={2} />
                   ))}
       </main>
-      <div style={{ height: FOOTER_H }}>
-        <Footer />
-      </div>
     </div>
   );
 };

@@ -19,7 +19,7 @@ type Props = {
   zIndex?: number;
   onBounce?: (side: "left" | "right" | "top" | "bottom") => void;
   src?: string;
-  infoText?: string; // 👈 texto informativo que mostramos en el modal
+  infoText?: string;
 };
 
 const rand = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -134,7 +134,6 @@ export const Asteroide: React.FC<Props> = ({
   }, [prefersReduced, rotate, sizePx, onBounce]);
 
   const handleClick = () => {
-    // El hook ya maneja internamente si es la primera vez o no
     visitAsteroid();
     setShowModal(true);
   };

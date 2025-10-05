@@ -18,8 +18,6 @@ type CustomItem = {
 
 const points = PLANET_POINTS
 
-
-/* ====== helpers ====== */
 function deg2rad(d: number) {
   return (d * Math.PI) / 180;
 }
@@ -38,7 +36,6 @@ function createCustomMarker(color: number) {
   return mesh;
 }
 
-/* ====== Modal super simple ====== */
 function Modal({
   title,
   children,
@@ -48,13 +45,11 @@ function Modal({
   children: React.ReactNode;
   onClose: () => void;
 }) {
-  // Cerrar con Esc
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", onKey);
-    // bloquear scroll del body
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
@@ -123,14 +118,6 @@ export default function GlobeView() {
     if (canvas) canvas.style.cursor = cursor;
   }, []);
 
-  const customLayer = useMemo<CustomItem[]>(
-    () => [
-      { name: "Madrid", lat: 40.4168, lng: -3.7038, color: 0xff4d4d, alt: 0.02 },
-      { name: "Vigo", lat: 42.2406, lng: -8.7207, color: 0x00d4ff, alt: 0.02 }
-    ],
-    []
-  );
-
   useEffect(() => {
     const globe = globeRef.current;
     if (!globe) return;
@@ -182,7 +169,6 @@ export default function GlobeView() {
           visitEarthPoint(pointData.id);
           setSelected({ type: "point", data: pointData });
         }}
-        customLayerData={customLayer}
         customThreeObject={(d: any) => {
           const customData = d as CustomItem;
           const mesh = createCustomMarker(customData.color);
@@ -224,14 +210,14 @@ export default function GlobeView() {
                 />
               )}
 
-              {/* Descripción */}
+              {/* Description */}
               {selected.data.description && (
                 <p className="text-sm text-gray-300">{selected.data.description}</p>
               )}
               <h3 className="font-semibold text-white mb-2">
                 {selected.data.sectionTitle}
               </h3>
-              {/* Bullets pedagógicos */}
+              {/* Bullets */}
               {selected.data.bullets?.length ? (
                 <section>
                   <ul className="list-disc pl-5 space-y-1 text-sm text-gray-300">
@@ -239,7 +225,7 @@ export default function GlobeView() {
                   </ul>
                 </section>
               ) : null}
-              {/* Lat/Lng + fuente */}
+              {/* Lat/Lng + font */}
               <div className="text-xs text-gray-400">
                 <p>
                   Lat: <span className="font-mono">{selected.data.lat.toFixed(3)}</span> ·

@@ -18,7 +18,6 @@ export const Astronaut = () => {
     }
   }, [isOpen, savedName, savedSkin]);
 
-  // Cerrar con ESC
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false);
@@ -26,7 +25,6 @@ export const Astronaut = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen]);
 
-  // Imagen según skin (usar siempre la guardada para el botón, temporal solo para el preview del modal)
   const savedSkinData = ASTRONAUT_SKINS.find(s => s.id === savedSkin);
   const buttonSkinSrc = savedSkinData?.image || ASTRONAUT_SKINS[0].image;
 
@@ -34,7 +32,6 @@ export const Astronaut = () => {
   const modalSkinSrc = modalSkinData?.image || ASTRONAUT_SKINS[0].image;
 
   const handleSave = () => {
-    // Guardar los valores temporales en localStorage
     setSavedName(tempName);
     setSavedSkin(tempSkin);
     console.log({ name: tempName, skin: tempSkin });
@@ -89,8 +86,6 @@ export const Astronaut = () => {
 			onClick={(e) => e.stopPropagation()}
 			>
 
-
-
 			{/* Header modal */}
 			<div className="flex items-center justify-between px-6 py-4 border-b border-gray-600">
 				<h2 id="astronaut-modal-title" className="text-xl font-mono">
@@ -106,9 +101,8 @@ export const Astronaut = () => {
 				</button>
 			</div>
 
-			{/* Grid columnas */}
 			<div className="grid grid-cols-1 md:grid-cols-5">
-				{/* Izquierda (preview) */}
+				{/* Left */}
 				<div className="md:col-span-3 p-6 flex items-center justify-center bg-slate-800">
 				<div className="relative w-full max-w-md aspect-square">
 					<img
@@ -119,9 +113,10 @@ export const Astronaut = () => {
 				</div>
 				</div>
 
-				{/* Derecha (controles) */}
+				{/* Right */}
 				<div className="md:col-span-2 p-6 space-y-6">
-				{/* Nombre */}
+
+				{/* Name */}
 				<div>
 					<label
 					htmlFor="astro-name"
@@ -160,7 +155,7 @@ export const Astronaut = () => {
 					</div>
 				</div>
 
-				{/* Acciones */}
+				{/* Actions */}
 				<div className="flex items-center gap-3 pt-2">
 					<button
 					type="button"
@@ -185,7 +180,6 @@ export const Astronaut = () => {
 				</div>
 			</div>
 			</div>
-          {/* /Contenido */}
         </div>
       )}
     </>

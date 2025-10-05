@@ -7,7 +7,7 @@ export const Header: FC = () => {
   const [showTeam, setShowTeam] = useState(false);
   const { levelInfo, resetExperience, experienceData } = useExperienceContext();
 
-  // Calcular el porcentaje de progreso hacia el siguiente nivel
+  // Calculate the percentage of progress towards the next level
   const progressPercentage = levelInfo.xpForNextLevel > 0
     ? (levelInfo.currentLevelXP / levelInfo.xpForNextLevel) * 100
     : 100;
@@ -24,17 +24,17 @@ export const Header: FC = () => {
         </div>
       </div>
 
-      {/* Nombre centrado */}
+      {/* Name */}
       <div className="absolute top-0 left-1/2 -translate-x-[25%] pointer-events-auto">
         <img src="/images/nombre.png" className="h-[130px] w-auto" />
       </div>
 
-      {/* Contenedor astronauta + barra */}
+      {/* Container astronaut */}
       <div className="absolute right-4 top-[20px] flex items-center gap-4 pointer-events-auto">
-        {/* BotÃģn astronauta (modal) */}
+        {/* Boton astronauta (modal) */}
         <Astronaut />
 
-        {/* Barra de nivel */}
+        {/* Level Bar */}
         <div className="w-[120px] h-3 bg-white/20 rounded-full overflow-hidden shadow-inner border border-white">
           <div
             className="h-full bg-white transition-all duration-300"
@@ -42,13 +42,13 @@ export const Header: FC = () => {
           ></div>
         </div>
 
-        {/* Texto de nivel con tooltip */}
+        {/* Tooltip */}
         <div className="relative group">
           <span className="text-white font-bold text-sm cursor-help">
             Lv. {levelInfo.level}
           </span>
 
-          {/* Tooltip con información detallada */}
+          {/* Tooltip with detailed information */}
           <div className="absolute top-full right-0 mt-2 hidden group-hover:block z-50">
             <div className="bg-gray-800 text-white text-xs rounded py-2 px-3 whitespace-nowrap shadow-lg border border-gray-600">
               <div>Level {levelInfo.level}</div>
@@ -64,7 +64,7 @@ export const Header: FC = () => {
         </div>
       </div>
 
-      {/* Modal del equipo */}
+      {/* Team Modal */}
       {showTeam && <TeamModal onClose={() => setShowTeam(false)} />}
     </header>
   );

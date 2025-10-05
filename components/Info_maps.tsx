@@ -1,6 +1,5 @@
-// src/constants/Info_maps.ts
 export type PointInfo = {
-  id: string;                // ID único para cada punto
+  id: string;
   name: string;
   lat: number;
   lng: number;
