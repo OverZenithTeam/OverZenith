@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -11,40 +10,45 @@
         theme: {
           extend: {
             colors: {
-              'space-blue': '#0d1b2a',
-              'light-steel': '#e0e1dd',
-              'comet-grey': '#778da9',
-              'star-white': '#fbfef9',
+              "space-blue": "#0d1b2a",
+              "light-steel": "#e0e1dd",
+              "comet-grey": "#778da9",
+              "star-white": "#fbfef9",
             },
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ["Inter", "sans-serif"],
             },
             animation: {
-              'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+              "fade-in-up": "fadeInUp 0.8s ease-out forwards",
             },
             keyframes: {
               fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
+                "0%": { opacity: "0", transform: "translateY(20px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
               },
-            }
-          }
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://aistudiocdn.com/react@^19.2.0",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "recharts": "https://aistudiocdn.com/recharts@^3.2.1"
         }
       }
     </script>
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "recharts": "https://aistudiocdn.com/recharts@^3.2.1"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    <link rel="stylesheet" href="/index.css" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  </head>
   <body class="bg-white">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
