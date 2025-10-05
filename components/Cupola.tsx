@@ -8,7 +8,7 @@ interface CupolaProps {
 const Cupola: FC<CupolaProps> = ({ hidden = false }) => {
   if (hidden) return null;
   return (
-    <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 10 }}>
+    <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
       <img
         src="cupula.png"
         alt="Cupola view"
