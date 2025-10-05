@@ -26,6 +26,11 @@ export const Header: FC = () => {
         </div>
       </div>
 
+	   {/* Name */}
+		<div className="absolute top-0 left-1/2 -translate-x-[25%] pointer-events-auto hidden md:block">
+		<img src={name} className="h-[130px] w-auto" />
+		</div>
+
       {/* Container astronaut y Level Bar - Arriba a la derecha */}
       <div className="absolute right-4 top-4 flex items-center gap-4 pointer-events-auto">
         {/* Boton astronauta (modal) */}
