@@ -123,5 +123,35 @@ export const PLANET_POINTS: PointInfo[] = [
   bullets: [
     "Because it was designed to detonate approximately 600 meters above the city to maximize damage from the blast wave and heat, affecting more buildings and people than if it had exploded on the ground. Many think it 'fell and exploded on the ground,' but the altitude strategy was key to its devastation."
   ]
+},
+{
+  id: "Teide Observatory (Tenerife, Canary Islands)",
+  name: "Teide Observatory (Tenerife, Canary Islands)",
+  lat: 28.3011111,
+  lng: -16.5105556,
+  title: "Teide Observatory (Tenerife, Canary Islands)",
+  bullets: [
+    "In this observatory where Helioseismology was born in 1979"
+  ]
+},
+{
+  id: "Madrid Deep Space Communications Complex",
+  name: "Madrid Deep Space Communications Complex",
+  lat: 40.42981,
+  lng: -4.24905,
+  title: "Emirates Mars Mission (Hope)",
+  bullets: [
+    "search for the connection between the current Martian climate and the ancient climate of Mars."
+  ]
+},
+{
+  id: "Calar Alto Observatory, Andalucía",
+  name: "Calar Alto Observatory, Andalucía",
+  lat: 37.22361100,
+  lng: -2.54611100,
+  title: "Calar Alto Observatory, Andalucía",
+  bullets: [
+    "The Spanish Astronomical Center in Andalusia (CAHA), also known as the Calar Alto Observatory, is the largest astronomical observatory in Europe."
+  ]
 }
 ];
