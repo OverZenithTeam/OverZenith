@@ -4,6 +4,8 @@ import * as THREE from "three";
 import { PLANET_POINTS,PointInfo } from "./Info_maps";
 import { useExperienceContext } from "../contexts/ExperienceProvider";
 import { useXPContext } from "../contexts/XPContext";
+import cloudsImg from "../images/clouds.png";
+import globeImg from "../images/earth-blue-marble.jpg";
 
 type GlobeRef = any;
 
@@ -139,6 +141,26 @@ export default function GlobeView() {
     }
     const renderer = globe.renderer?.();
     if (renderer) renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+
+    const CLOUDS_ALT = 0.004;
+    const CLOUDS_ROTATION_SPEED = -0.006; // deg/frame
+
+    new THREE.TextureLoader().load(cloudsImg, (cloudsTexture) => {
+      const clouds = new THREE.Mesh(
+        new THREE.SphereGeometry(radius * (1 + CLOUDS_ALT), 75, 75),
+        new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true })
+      );
+
+      clouds.rotation.y = Math.PI;
+
+      globe.scene().add(clouds);
+
+      const rotateClouds = () => {
+        clouds.rotation.y += CLOUDS_ROTATION_SPEED * Math.PI / 180;
+        requestAnimationFrame(rotateClouds);
+      };
+      rotateClouds();
+    });
   }, []);
 
   return (
@@ -146,7 +168,7 @@ export default function GlobeView() {
       <Globe
         ref={globeRef as any}
         enablePointerInteraction
-        globeImageUrl="../images/earth-blue-marble.jpg"
+        globeImageUrl={globeImg}
 		//
         bumpImageUrl="https://unpkg.com/three-globe/example/img/earth-topology.png"
         backgroundImageUrl="https://unpkg.com/three-globe/example/img/night-sky.png"
@@ -156,9 +178,9 @@ export default function GlobeView() {
         pointsData={points}
         pointLat="lat"
         pointLng="lng"
-        pointAltitude={() => 0.01}
+        pointAltitude={() => 0.02}
         pointRadius={0.6}
-		pointColor={()=> "#ff03038a"}
+        pointColor={()=> "#ff0346"}
         pointLabel={(d: any) =>
           `${(d as PointItem).name}\n(${(d as PointItem).lat.toFixed(2)}, ${(d as PointItem).lng.toFixed(2)})`
         }
@@ -166,7 +188,7 @@ export default function GlobeView() {
         onPointHover={(p: any) => setCanvasCursor(p ? "pointer" : "grab")}
         onPointClick={(p: any, _event: MouseEvent) => {
           const pointData = p as PointItem;
-          // Ganar XP la primera vez que se visita este punto usando su ID único
+          // Win XP only first time
           visitEarthPoint(pointData.id);
           setSelected({ type: "point", data: pointData });
         }}
