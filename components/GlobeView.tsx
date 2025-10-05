@@ -178,9 +178,9 @@ export default function GlobeView() {
         pointsData={points}
         pointLat="lat"
         pointLng="lng"
-        pointAltitude={() => 0.02}
+        pointAltitude={() => 0.025}
         pointRadius={0.6}
-        pointColor={()=> "#ff03"}
+        pointColor={()=> "#ff0303a0"}
         pointLabel={(d: any) =>
           `${(d as PointItem).name}\n(${(d as PointItem).lat.toFixed(2)}, ${(d as PointItem).lng.toFixed(2)})`
         }
