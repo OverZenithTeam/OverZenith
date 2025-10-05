@@ -144,8 +144,11 @@ export default function GlobeView() {
     const CLOUDS_ALT = 0.004;
     const CLOUDS_ROTATION_SPEED = -0.006; // deg/frame
 
+    let clouds: THREE.Mesh | null = null;
+    let animationFrameId: number | null = null;
+
     new THREE.TextureLoader().load(cloudsImg, (cloudsTexture) => {
-      const clouds = new THREE.Mesh(
+      clouds = new THREE.Mesh(
         new THREE.SphereGeometry(radius * (1 + CLOUDS_ALT), 75, 75),
         new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true })
       );
@@ -155,11 +158,29 @@ export default function GlobeView() {
       globe.scene().add(clouds);
 
       const rotateClouds = () => {
-        clouds.rotation.y += CLOUDS_ROTATION_SPEED * Math.PI / 180;
-        requestAnimationFrame(rotateClouds);
+        if (clouds) {
+          clouds.rotation.y += CLOUDS_ROTATION_SPEED * Math.PI / 180;
+          animationFrameId = requestAnimationFrame(rotateClouds);
+        }
       };
       rotateClouds();
     });
+
+    return () => {
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+      }
+
+      if (clouds && globe.scene()) {
+        globe.scene().remove(clouds);
+
+        clouds.geometry.dispose();
+        if (clouds.material instanceof THREE.Material) {
+          clouds.material.dispose();
+        }
+        clouds = null;
+      }
+    };
   }, []);
 
   return (
