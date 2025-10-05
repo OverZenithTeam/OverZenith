@@ -48,13 +48,13 @@ export const SwitchCupola: FC<Props> = ({ hidden, onClick, onXPGain }) => {
       </div>
 
       {/* Botón "Test Knowledge" en la parte inferior */}
-      <div className="fixed bottom-4 left-0 right-0 flex justify-center z-40">
+      <div className="fixed bottom-4 left-0 right-0 flex justify-center z-40 font-mono">
         <button
-          onClick={() => setIsQuizOpen(true)}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
-          className="relative px-8 py-3 font-medium text-lg text-[#181818] bg-[#fec195] border-[3px] border-[#fec195] rounded-lg shadow-[0_0_0_#fec1958c] transition-all hover:bg-transparent hover:text-[#fec195] hover:shadow-[0_0_25px_#fec1958c]"
-        >
+			onClick={() => setIsQuizOpen(true)}
+			onMouseEnter={() => setHovered(true)}
+			onMouseLeave={() => setHovered(false)}
+			className="relative px-8 py-3 font-medium text-lg text-white bg-[#1e293b] border-[3px] border-[#1e293b] rounded-lg shadow-[0_0_0_#1e293b8c] transition-all hover:bg-transparent hover:text-white hover:shadow-[0_0_25px_#1e293b8c]"
+		>
           Test Knowledge
 
             {/* Estrellas animadas */}
