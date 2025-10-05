@@ -61,7 +61,7 @@ function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-[999] flex items-center justify-center"
+       className="fixed inset-0 z-[999] flex items-start sm:items-center justify-center overflow-y-auto p-4 sm:p-8"
       aria-modal="true"
       role="dialog"
       aria-labelledby="modal-title"
@@ -74,7 +74,7 @@ function Modal({
       />
       {/* Dialog */}
     <div
-  className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden font-mono p-10"
+   className="relative rounded-2xl shadow-2xl w-full max-w-5xl mx-4 font-mono p-10 max-h-[85vh] overflow-y-auto"
   style={{ backgroundColor: "#282c34", color: "white" }}
 >
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-600 -mx-10 -mt-10 mb-6">
