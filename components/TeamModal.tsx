@@ -53,40 +53,33 @@ export const TeamModal: FC<Props> = ({ onClose }) => {
         {/* Grid of members */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
           {team.map((member) => (
-            <div
+            <a
               key={member.name}
+              href={member.github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="relative w-[160px] h-[190px] bg-[#1e293b] flex flex-col items-center justify-center gap-3 rounded-lg cursor-pointer overflow-hidden group transition-transform duration-500 hover:scale-105"
             >
-              {/* Animated border glow */}
+              {/* Animated Glow Edge*/}
               <div className="absolute inset-0 -z-10 rounded-lg border-[2px] border-transparent bg-gradient-to-tr from-[#e81cff] via-[#1e293b] to-[#fc00ff] p-[1.5px]">
-                <div
-                  className="absolute inset-0 rounded-lg"
-                  style={{ backgroundColor: "#1e293b" }}
-                />
+                <div className="absolute inset-0 rounded-lg" style={{ backgroundColor: "#1e293b" }} />
               </div>
-
+                    
               {/* Image */}
               <img
                 src={member.img}
                 alt={member.name}
                 className="w-20 h-20 object-cover rounded-full border-2 border-[#1e293b] shadow-lg group-hover:scale-110 transition-transform duration-300"
               />
-
+          
               {/* Name */}
               <p className="text-sm font-bold text-white text-center leading-tight">
                 {member.name}
               </p>
 
-              {/* GitHub */}
-              <a
-                href={member.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#1e293b] font-bold text-xs hover:underline"
-              >
-                GitHub
-              </a>
-            </div>
+              {/* Github */}
+              <span className="text-[#94a3b8] text-xs">View GitHub</span>
+            </a>
           ))}
         </div>
 
