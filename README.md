@@ -95,5 +95,5 @@ Our mission is to make NASA’s knowledge **accessible to everyone**, inspiring 
 ---
 
 <div align="center">
-  <sub>Developed for the NASA Space Apps Challenge 🚀</sub>
+  <sub>Developed for the NASA Space Apps Challenge! 🚀</sub>
 </div>
