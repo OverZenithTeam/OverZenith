@@ -58,41 +58,41 @@ export const PLANET_POINTS: PointInfo[] = [
   sourceUrl: "https://www.nasa.gov/centers/kennedy/home/index.html"
 },
 {
-  id: "baikonur-cosmodrome",
+  id: "baikonur-cosmodrome-nasa",
   name: "Baikonur, Kazakhstan",
-  lat: 45.9206,
-  lng: 63.3422,
+    lat: 46.0,
+  lng: 63.6,
   title: "Baikonur Cosmodrome (Kazakhstan)",
-  sectionTitle: "What is LEO and why it is important for crewed missions and satellites",
+  sectionTitle: "Baikonur in NASA’s Earth imagery and its role",
   description:
-    "Yuri Gagarin, the first human in space, launched from Baikonur.",
+    "NASA’s Terra satellite captured images of the Baikonur Cosmodrome, which is used for Russian crewed missions, geostationary, lunar, planetary and Earth-observing launches. :contentReference[oaicite:1]{index=1}",
   bullets: [
-    "Low Earth Orbit (LEO) is located between 200 and 2,000 km above Earth.",
-    "It requires less energy to reach orbit than higher orbits.",
-    "It enables constant communication and direct observation of Earth.",
-    "It is where the ISS and most observation satellites are located.",
-    "It was chosen for the first crewed missions due to its safety and efficiency."
+    "The site is used for all Russian crewed missions, per NASA imagery. :contentReference[oaicite:2]{index=2}",
+    "Baikonur supports launches of lunar, planetary, and Earth-observing missions as well. :contentReference[oaicite:3]{index=3}",
+    "It was rented by Russia from Kazakhstan and is under Russian administration. :contentReference[oaicite:4]{index=4}",
+    "The NASA image covers ~15×23 km area showing the launch complex. :contentReference[oaicite:5]{index=5}",
+    "It was originally established in the Soviet era, evolving into a major international launch site. :contentReference[oaicite:6]{index=6}"
   ],
-  source: "Wikipedia – Low Earth Orbit",
-  sourceUrl: "https://en.wikipedia.org/wiki/Low_Earth_orbit"
+  source: "NASA Science / Photojournal",
+  sourceUrl: "https://science.nasa.gov/photojournal/baikonur-cosmodrome-kazakhstan"
 },
 {
-  id: "kourou-space-centre",
-  name: "Kourou, French Guiana",
-  lat: 5.236,
-  lng: -52.776,
-  title: "Guiana Space Centre (Kourou)",
-  sectionTitle: "Why the location affects the launch",
+  id: "kennedy-space-center",
+  name: "Merritt Island, Florida, USA",
+  lat: 28.5721,
+  lng: -80.6480,
+  title: "Kennedy Space Center (NASA)",
+  sectionTitle: "How NASA uses its equatorial advantage",
   description:
-    "The ESA launches rockets from Kourou to take advantage of its location near the equator.",
+    "The Kennedy Space Center is NASA’s primary launch site for human spaceflight, located on Florida’s east coast to take advantage of Earth’s rotation and allow safe launches over the Atlantic Ocean.",
   bullets: [
-    "The Earth rotates from west to east, giving an extra speed of up to 460 m/s at the equator.",
-    "Rockets require less fuel to reach orbital velocity.",
-    "It allows carrying heavier payloads and increases efficiency.",
-    "That's why many space centers are located at low latitudes."
+    "Florida’s proximity to the equator gives rockets a natural boost from Earth’s rotation, improving launch efficiency.",
+    "Launches are directed eastward over the Atlantic Ocean to avoid populated areas.",
+    "Home to Launch Complexes 39A and 39B, used for Apollo, Space Shuttle, and Artemis missions.",
+    "The Vehicle Assembly Building (VAB) is one of the largest buildings in the world, where rockets are assembled vertically."
   ],
-  source: "Wikipedia – Guiana Space Centre",
-  sourceUrl: "https://en.wikipedia.org/wiki/Guiana_Space_Centre?utm_source=chatgpt.com"
+  source: "NASA – Kennedy Space Center Overview",
+  sourceUrl: "https://www.nasa.gov/kennedy"
 },
 {
   id: "houston-mission-control",
@@ -111,7 +111,7 @@ export const PLANET_POINTS: PointInfo[] = [
     "The NBL trains astronauts to move and use tools without weight and respond to emergencies."
   ],
   source: "NASA – NBL (Neutral Buoyancy Laboratory)",
-  sourceUrl: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory/?utm_source=chatgpt.com"
+  sourceUrl: "https://www.nasa.gov/johnson/neutral-buoyancy-laboratory"
 },
 {
   id: "hiroshima-bomb",

@@ -89,7 +89,7 @@ function Modal({
           type="button"
           onClick={onClose}
           className="p-2 rounded-md text-white hover:bg-gray-700"
-          aria-label="Cerrar"
+          aria-label="Close"
         >
           ✕
           </button>
@@ -100,7 +100,7 @@ function Modal({
           onClick={onClose}
           className="px-4 py-2 border border-white text-white font-bold rounded-lg hover:bg-white hover:text-[#282c34] transition"
         >
-          Cerrar
+          Close
         </button>
         </div>
       </div>
@@ -247,7 +247,7 @@ export default function GlobeView() {
                 </p>
                 {selected.data.source && (
                   <p className="mt-1">
-                   <span className="font-semibold text-gray-200">Fuente:</span> {selected.data.source}
+                   <span className="font-semibold text-gray-200">Font:</span> {selected.data.source}
                   </p>
                 )}
               </div>
