@@ -90,7 +90,7 @@ Our mission is to make NASA’s knowledge **accessible to everyone**, inspiring 
 
 * **[Alejandro Gómez Girón](https://github.com/alejogogi)** – *Graphic Designer and Software Development student at 42 Madrid, blending technical precision with artistic vision to craft memorable digital experiences.*
 
-* **[Ángel García Beltrán](https://github.com/angelurano)** – *Full-Stack Developer and 42 Madrid student,focused on creating intuitive, efficient, and accessible web solutions.*
+* **[Ángel García Beltrán](https://github.com/angelurano)** – *Full-Stack Developer and 42 Madrid student, focused on creating intuitive, efficient, and accessible web solutions.*
 
 ---
 
