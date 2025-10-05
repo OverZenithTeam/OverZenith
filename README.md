@@ -4,28 +4,42 @@
 
 # 🌍 OverZenith – Bringing Space Closer to Everyone
 
-Imagine exploring space from your own screen.
-Our project is an **interactive, gamified web platform** that brings NASA’s knowledge closer to everyone.
-You can **create your character, explore Earth from the Cupola view, unlock educational content, and level up through quizzes**.
+*"What if curiosity about space could turn into an everyday adventure?"*  
 
-With dynamic animations that evoke **weightlessness** and an **interactive 3D globe** full of discoveries, we make space exploration accessible to all — **turning it into a daily tool for curiosity, learning, and global connection.**
-
----
-
-### 🛰️ About the Project
-
-**OverZenith** was created for the **NASA Space Apps Challenge**.
-The project reimagines how people interact with space science by combining gamification, education, and immersion.
-It aims to **democratize access to NASA’s data and resources**, allowing everyone — not just specialists — to explore, learn, and connect.
+**OverZenith** is our answer: an **interactive, gamified web platform** designed for the **NASA Space Apps Challenge**.  
+We transform NASA’s knowledge into an engaging digital journey, making space exploration not a distant dream but a **daily tool for curiosity, learning, and connection**.  
 
 ---
 
-### 🚀 Core Features
-- 🌐 **3D Interactive Earth:** explore the planet as seen from the ISS Cupola.
-- 🧑‍🚀 **Character Creation:** customize your astronaut (name, appearance, and skin).
-- 📚 **Educational Quizzes:** unlock new knowledge and level up through challenges.
-- 🎮 **Gamified Experience:** earn progress and discover hidden stories around Earth.
-- ☁️ **Microgravity-inspired animations:** smooth floating elements across the UI.
+## 🛰️ About the Project
+
+The goal of **OverZenith** is to create an **accessible and universal platform** that opens the doors of NASA’s knowledge to society in a **clear, immersive, and playful way**.  
+
+Too often, space science feels reserved for specialists. We want to change that.  
+Our vision is to **normalize access to space science**, sparking wonder in children, students, and enthusiasts — anyone with a curious mind.  
+
+Through **gamification, interactivity, and design inspired by microgravity**, OverZenith makes learning about space feel like being inside the ISS Cupola, gazing down at Earth.  
+
+---
+
+## 🌌 The Experience
+
+Inside OverZenith, users will:  
+
+- 🌐 **Explore Earth in 3D** – From the **Cupola module of the ISS**, click on interactive points across the globe to unlock NASA-related insights, from astronaut training at the **Neutral Buoyancy Laboratory (NBL)** to essential space science concepts.  
+- 🧑‍🚀 **Create your astronaut** – Personalize your digital explorer with a name, appearance, and skin, turning the learning process into a personal mission.  
+- 📚 **Learn through Quizzes** – Test your knowledge, unlock content, and **level up** as you expand your understanding of space.  
+- ☁️ **Experience Microgravity** – Dynamic floating animations recreate the atmosphere of orbit, transforming the platform into an **immersive adventure**.  
+
+✨ In short: **OverZenith transforms space science into an accessible journey**, where curiosity fuels exploration and learning.  
+
+---
+
+## 🚀 Why It Matters
+
+- 🌍 **Democratizing Knowledge**: Space exploration shouldn’t belong only to experts. OverZenith makes NASA’s resources approachable for everyone.  
+- 🎮 **Learning by Playing**: Gamification keeps curiosity alive, turning information into challenges and progress.  
+- 👩‍🚀 **Inspiring the Next Generation**: By blending science and play, we aim to spark vocations in STEM and bring more people closer to space exploration.  
 
 ---
 
@@ -61,17 +75,17 @@ Our mission is to make NASA’s knowledge **accessible to everyone**, inspiring 
 
 ### 💫 Meet the Crew
 
-* **[Daniel Castillo Correa](https://github.com/DanielCasti11o)** – *Software Engineer passionate about merging creativity and technology to design immersive digital experiences.*
+* **[Loreto Uzquiano Esteban](https://github.com/loreeue)** – *Systems Engineer and 42 Madrid student, passionate about learning and implementing new technologies to create innovative solutions.*  
 
-* **[Ángel García Beltrán](https://github.com/angelurano)** – *Full-Stack Developer focused on creating intuitive, efficient, and accessible web solutions.*
+* **[Daniel Castillo Correa](https://github.com/DanielCasti11o)** – *Software Development student at 42 Madrid, with a strong drive for continuous learning and growth in cutting-edge technologies.*  
 
-* **[Claudia Gil](https://github.com/claauugil)** – *Frontend Developer with a strong focus on user experience and modern interface design.*
+* **[Gabriel Freire Simón](https://github.com/ByteGab)** – *Full-Stack Developer with a focus on scalable architectures and problem-solving, combining technical expertise with a passion for teamwork and innovation.*  
 
-* **[Gabriel Freire Simón](https://github.com/ByteGab)** – *Backend Developer specialized in building scalable systems and data-driven architectures.*
+* **[Claudia Gil](https://github.com/claauugil)** – *Software Development student at 42 Madrid, eager to explore new technologies and with a strong interest in creative digital solutions.*  
 
-* **[Alejandro Gómez Girón](https://github.com/alejogogi)** – *Programmer at 42 Madrid and Graphic Designer, blending technical precision with artistic vision to craft memorable digital experiences.*
+* **[Alejandro Gómez Girón](https://github.com/alejogogi)** – *Graphic Designer and Software Development student at 42 Madrid, blending technical precision with artistic vision to craft memorable digital experiences.*  
 
-* **[Loreto Uzquiano Esteban](https://github.com/loreeue)** – *Software Engineer and creative lead, passionate about combining innovation, space science, and accessibility to connect people through technology.*
+* **[Ángel García Beltrán](https://github.com/angelurano)** – *Full-Stack Developer focused on creating intuitive, efficient, and accessible web solutions.*  
 
 ---
 
